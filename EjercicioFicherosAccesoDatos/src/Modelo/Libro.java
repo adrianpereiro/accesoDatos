@@ -1,6 +1,7 @@
 package Modelo;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Libro {
 	private String tituloLibro;
@@ -8,9 +9,9 @@ public class Libro {
 	private String Autor;
 	private LocalDate fechaPublicacion;
 	private String Genero;
-	private String personajesPrincipales;
+	private ArrayList<Personaje> personajesPrincipales;
 	
-	Libro(String tituloLibro, String Editorial, String Autor, LocalDate fechaPublicacion, String Genero, String personajesPrincipales){
+	Libro(String tituloLibro, String Editorial, String Autor, LocalDate fechaPublicacion, String Genero, ArrayList<Personaje> personajesPrincipales){
 		this.tituloLibro=tituloLibro;
 		this.Editorial=Editorial;
 		this.Autor=Autor;
@@ -60,11 +61,11 @@ public class Libro {
 		Genero = genero;
 	}
 
-	public String getPersonajesPrincipales() {
+	public ArrayList<Personaje> getPersonajesPrincipales() {
 		return personajesPrincipales;
 	}
 
-	public void setPersonajesPrincipales(String personajesPrincipales) {
+	public void setPersonajesPrincipales(ArrayList<Personaje> personajesPrincipales) {
 		this.personajesPrincipales = personajesPrincipales;
 	}
 	
