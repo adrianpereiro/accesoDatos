@@ -11,7 +11,7 @@ public class Libro {
 	private String Genero;
 	private ArrayList<Personaje> personajesPrincipales;
 	
-	Libro(String tituloLibro, String Editorial, String Autor, LocalDate fechaPublicacion, String Genero, ArrayList<Personaje> personajesPrincipales){
+	public Libro(String tituloLibro, String Editorial, String Autor, LocalDate fechaPublicacion, String Genero, ArrayList<Personaje> personajesPrincipales){
 		this.tituloLibro=tituloLibro;
 		this.Editorial=Editorial;
 		this.Autor=Autor;

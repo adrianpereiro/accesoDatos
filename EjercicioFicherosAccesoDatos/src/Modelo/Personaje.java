@@ -5,9 +5,8 @@ public class Personaje {
 	private String genero;
 	private String importancia;
 	
-	public Personaje(String nombre, String genero, String importancia) {
+	public Personaje(String nombre, String importancia) {
 		this.nombre=nombre;
-		this.genero=genero;
 		this.importancia=importancia;
 	}
 
