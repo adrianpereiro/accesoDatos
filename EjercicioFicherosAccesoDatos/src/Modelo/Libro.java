@@ -10,15 +10,15 @@ public class Libro {
 	private LocalDate fechaPublicacion;
 	private String Genero;
 	private ArrayList<Personaje> personajesPrincipales;
-	
-	public Libro(String tituloLibro, String Editorial, String Autor, LocalDate fechaPublicacion, String Genero, ArrayList<Personaje> personajesPrincipales){
-		this.tituloLibro=tituloLibro;
-		this.Editorial=Editorial;
-		this.Autor=Autor;
-		this.fechaPublicacion=fechaPublicacion;
-		this.Genero=Genero;
-		this.personajesPrincipales=personajesPrincipales;
-		
+
+	public Libro(String tituloLibro, String Editorial, String Autor, LocalDate fechaPublicacion, String Genero, ArrayList<Personaje> personajesPrincipales) {
+		this.tituloLibro = tituloLibro;
+		this.Editorial = Editorial;
+		this.Autor = Autor;
+		this.fechaPublicacion = fechaPublicacion;
+		this.Genero = Genero;
+		this.personajesPrincipales = personajesPrincipales;
+
 	}
 
 	public String getTituloLibro() {
@@ -68,5 +68,5 @@ public class Libro {
 	public void setPersonajesPrincipales(ArrayList<Personaje> personajesPrincipales) {
 		this.personajesPrincipales = personajesPrincipales;
 	}
-	
+
 }

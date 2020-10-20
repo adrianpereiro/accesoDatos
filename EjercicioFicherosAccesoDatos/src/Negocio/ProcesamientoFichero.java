@@ -13,16 +13,16 @@ import java.util.ArrayList;
 import Modelo.Libro;
 import Modelo.Personaje;
 
-public abstract class ProcesamientoFichero implements IProcesamientoFichero{
-	
-	public static Boolean existeFichero(){
+public abstract class ProcesamientoFichero implements IProcesamientoFichero {
+
+	public static Boolean existeFichero() {
 		return null;
-		
+
 	}
-	
+
 	public static Boolean borrarFichero() {
 		return null;
-		
+
 	}
 
 }
