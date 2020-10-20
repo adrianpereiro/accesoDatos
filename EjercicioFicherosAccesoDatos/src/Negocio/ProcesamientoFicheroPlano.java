@@ -3,6 +3,8 @@ package Negocio;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.time.LocalDate;
@@ -21,9 +23,9 @@ public class ProcesamientoFicheroPlano extends ProcesamientoFichero{
 			FileInputStream fis;
 			try {
 				fis = new FileInputStream(f);
-			
-			@SuppressWarnings("resource")
+
 			InputStreamReader leer= new InputStreamReader(fis);
+			@SuppressWarnings("resource")
 			BufferedReader br= new BufferedReader(leer);
 				String linea;
 				while((linea = br.readLine())!= null)  {
@@ -56,10 +58,34 @@ public class ProcesamientoFicheroPlano extends ProcesamientoFichero{
 		return listaLibros;
 	}
 	
-	@Override
-	public void guardarFichero(ArrayList<Libro> ) {
-		// TODO Auto-generated method stub
+
+	public void guardarFichero(ArrayList<Libro> listaLibros ) {
+		File f= new File("");
+		try {
+			@SuppressWarnings("resource")
+			FileWriter fiw = new FileWriter(f);
 		
+		for(Libro libro : listaLibros) {
+			String tituloLibro=libro.getTituloLibro();
+			String Editorial = libro.getEditorial();
+			String Autor=libro.getAutor();
+			LocalDate fechaPublicacion = libro.getFechaPublicacion();
+			String cadenaFechaPublicacion =fechaPublicacion.toString();
+			String Genero=libro.getGenero();
+			String libroGuardar = tituloLibro+";"+Editorial+";"+Autor+";"+cadenaFechaPublicacion+";"+Genero+";";
+			ArrayList<Personaje> listaPersonajes = libro.getPersonajesPrincipales();
+			for(Personaje personajes : listaPersonajes) {
+				String nombre= personajes.getNombre();
+				String importancia= personajes.getImportancia();
+				libroGuardar=libroGuardar+"-"+nombre+","+importancia;
+			}
+			fiw.write(libroGuardar);
+		}
+		} catch (FileNotFoundException e ) {
+			e.printStackTrace();
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public static Boolean existeFichero(){
@@ -71,5 +97,8 @@ public class ProcesamientoFicheroPlano extends ProcesamientoFichero{
 		return null;
 		
 	}
+
+
+
 
 }

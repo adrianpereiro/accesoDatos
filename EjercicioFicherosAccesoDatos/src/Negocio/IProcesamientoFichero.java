@@ -7,6 +7,6 @@ public interface IProcesamientoFichero {
 	
 	public ArrayList<Libro> leerFichero();
 	
-	public void guardarFichero();
+	public void guardarFichero(ArrayList<Libro> listaLibros);
 }
 
