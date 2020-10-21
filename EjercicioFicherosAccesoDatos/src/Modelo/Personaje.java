@@ -1,6 +1,12 @@
 package Modelo;
 
-public class Personaje {
+import java.io.Serializable;
+
+public class Personaje  implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String nombre;
 	private String genero;
 	private String importancia;
