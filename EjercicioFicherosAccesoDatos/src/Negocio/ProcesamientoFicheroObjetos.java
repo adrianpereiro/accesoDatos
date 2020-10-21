@@ -47,7 +47,7 @@ public class ProcesamientoFicheroObjetos extends ProcesamientoFichero {
 		File f = new File("");
 		if (ProcesamientoFichero.existeFichero(f) == false) {
 			try {
-				ObjectOutputStream ficheroSalida = new ObjectOutputStream(new FileOutputStream(f));
+				ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f));
 				for (Libro libro : listaLibros) {
 					String tituloLibro = libro.getTituloLibro();
 					String Editorial = libro.getEditorial();
@@ -63,17 +63,16 @@ public class ProcesamientoFicheroObjetos extends ProcesamientoFichero {
 						String importancia = personajes.getImportancia();
 						libroGuardar = libroGuardar + "-" + nombre + "," + importancia;
 					}
-					ficheroSalida.writeObject(libroGuardar + "\n");
+					oos.writeObject(libroGuardar + "\n");
 				}
 
-				ficheroSalida.close();
+				oos.close();
 
 			} catch (FileNotFoundException fnfe) {
 				System.out.println("Error: El fichero no existe. ");
 			} catch (IOException ioe) {
 				System.out.println("Error: Fallo en la escritura en el fichero. ");
 			}
-
 		}
 	}
 }
