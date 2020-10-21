@@ -1,6 +1,5 @@
 package Negocio;
 
-import java.io.BufferedReader;
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,9 +14,14 @@ import Modelo.Personaje;
 
 public abstract class ProcesamientoFichero implements IProcesamientoFichero {
 
-	public static Boolean existeFichero() {
-		return null;
-
+	public static Boolean existeFichero(File f) {
+		Boolean existe;
+		if(f.exists()) {
+			existe=true;
+		}else {
+			existe=false;
+		}
+		return existe;
 	}
 
 	public static Boolean borrarFichero() {

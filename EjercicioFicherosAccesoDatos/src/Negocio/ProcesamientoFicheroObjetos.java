@@ -8,9 +8,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import Modelo.Libro;
+import Modelo.Personaje;
 
 public class ProcesamientoFicheroObjetos extends ProcesamientoFichero {
 	
@@ -43,8 +45,22 @@ public class ProcesamientoFicheroObjetos extends ProcesamientoFichero {
 		File f = new File("");
 		try {
 			ObjectOutputStream ficheroSalida = new ObjectOutputStream(new FileOutputStream(f));
-			for (Libro p : listaLibros) {
-				ficheroSalida.writeObject(p);
+			for (Libro libro : listaLibros) {
+				String tituloLibro = libro.getTituloLibro();
+				String Editorial = libro.getEditorial();
+				String Autor = libro.getAutor();
+				LocalDate fechaPublicacion = libro.getFechaPublicacion();
+				String cadenaFechaPublicacion = fechaPublicacion.toString();
+				String Genero = libro.getGenero();
+				String libroGuardar = tituloLibro + ";" + Editorial + ";" + Autor + ";" + cadenaFechaPublicacion + ";"
+						+ Genero + ";";
+				ArrayList<Personaje> listaPersonajes = libro.getPersonajesPrincipales();
+				for (Personaje personajes : listaPersonajes) {
+					String nombre = personajes.getNombre();
+					String importancia = personajes.getImportancia();
+					libroGuardar = libroGuardar + "-" + nombre + "," + importancia;
+				}
+				ficheroSalida.writeObject(libroGuardar+"\n");
 			}
 
 			ficheroSalida.close();
