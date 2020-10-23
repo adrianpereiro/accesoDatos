@@ -6,10 +6,12 @@ import Modelo.Libro;
 import Modelo.Personaje;
 import Negocio.IProcesamientoFichero;
 import Negocio.ProcesamientoFicheroPlano;
+import Negocio.ProcesamientoFicheroXMLDOM;
 
 public class Ejercicio {
 	public static void main(String[] args) {
-		procesarFicheroPlano();
+		//procesarFicheroPlano();
+		procesarFicheroXMLDOM();
 	}
 
 	public static void procesarFicheroPlano() {
@@ -26,6 +28,12 @@ public class Ejercicio {
 		listaLibros.add(l1);
 		listaLibros.add(l2);
 		proc.guardarFichero(listaLibros);
-
+	}
+	public static void procesarFicheroXMLDOM() {
+		IProcesamientoFichero proc = new ProcesamientoFicheroXMLDOM();
+		ArrayList<Libro> listaLibros = proc.leerFichero();
+		for(Libro libro : listaLibros) {
+			System.out.println(libro.toString());
+		}
 	}
 }

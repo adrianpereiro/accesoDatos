@@ -11,6 +11,7 @@ public class Personaje  implements Serializable {
 	private String genero;
 	private String importancia;
 
+
 	public Personaje(String nombre, String importancia) {
 		this.nombre = nombre;
 		this.importancia = importancia;
@@ -38,5 +39,10 @@ public class Personaje  implements Serializable {
 
 	public void setImportancia(String importancia) {
 		this.importancia = importancia;
+	}
+
+	@Override
+	public String toString() {
+		return "Nombre=" + nombre + ", Importancia=" + importancia;
 	}
 }

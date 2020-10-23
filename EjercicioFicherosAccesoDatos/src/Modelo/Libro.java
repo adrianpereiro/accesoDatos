@@ -73,5 +73,12 @@ public class Libro  implements Serializable {
 	public void setPersonajesPrincipales(ArrayList<Personaje> personajesPrincipales) {
 		this.personajesPrincipales = personajesPrincipales;
 	}
+	@Override
+	public String toString() {
+		return "Libro \n-Titulo Libro=" + tituloLibro +"\n"+ "-Editorial=" + Editorial +"\n"+ "-Autor=" + Autor
+				+"\n"+ "-Fecha de Publicacion=" + fechaPublicacion +"\n"+ "-Genero=" + Genero +"\n"+ "-Personajes Principales="
+				+ personajesPrincipales.toString() ;
+	}
+
 
 }
