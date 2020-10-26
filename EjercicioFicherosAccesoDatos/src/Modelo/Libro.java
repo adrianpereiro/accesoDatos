@@ -3,6 +3,7 @@ package Modelo;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import com.sun.xml.txw2.annotation.XmlElement;
 
 public class Libro  implements Serializable {
 	/**
@@ -29,7 +30,7 @@ public class Libro  implements Serializable {
 	public String getTituloLibro() {
 		return tituloLibro;
 	}
-
+	@XmlElement
 	public void setTituloLibro(String tituloLibro) {
 		this.tituloLibro = tituloLibro;
 	}
@@ -37,7 +38,7 @@ public class Libro  implements Serializable {
 	public String getEditorial() {
 		return Editorial;
 	}
-
+	@XmlElement
 	public void setEditorial(String editorial) {
 		Editorial = editorial;
 	}
@@ -45,7 +46,7 @@ public class Libro  implements Serializable {
 	public String getAutor() {
 		return Autor;
 	}
-
+	@XmlElement
 	public void setAutor(String autor) {
 		Autor = autor;
 	}
@@ -53,7 +54,7 @@ public class Libro  implements Serializable {
 	public LocalDate getFechaPublicacion() {
 		return fechaPublicacion;
 	}
-
+	@XmlElement
 	public void setFechaPublicacion(LocalDate fechaPublicacion) {
 		this.fechaPublicacion = fechaPublicacion;
 	}
@@ -61,7 +62,7 @@ public class Libro  implements Serializable {
 	public String getGenero() {
 		return Genero;
 	}
-
+	@XmlElement
 	public void setGenero(String genero) {
 		Genero = genero;
 	}
@@ -69,7 +70,7 @@ public class Libro  implements Serializable {
 	public ArrayList<Personaje> getPersonajesPrincipales() {
 		return personajesPrincipales;
 	}
-
+	@XmlElement
 	public void setPersonajesPrincipales(ArrayList<Personaje> personajesPrincipales) {
 		this.personajesPrincipales = personajesPrincipales;
 	}
