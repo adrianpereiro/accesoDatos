@@ -49,21 +49,7 @@ public class ProcesamientoFicheroObjetos extends ProcesamientoFichero {
 			try {
 				ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f));
 				for (Libro libro : listaLibros) {
-					String tituloLibro = libro.getTituloLibro();
-					String Editorial = libro.getEditorial();
-					String Autor = libro.getAutor();
-					LocalDate fechaPublicacion = libro.getFechaPublicacion();
-					String cadenaFechaPublicacion = fechaPublicacion.toString();
-					String Genero = libro.getGenero();
-					String libroGuardar = tituloLibro + ";" + Editorial + ";" + Autor + ";" + cadenaFechaPublicacion
-							+ ";" + Genero + ";";
-					ArrayList<Personaje> listaPersonajes = libro.getPersonajesPrincipales();
-					for (Personaje personajes : listaPersonajes) {
-						String nombre = personajes.getNombre();
-						String importancia = personajes.getImportancia();
-						libroGuardar = libroGuardar + "-" + nombre + "," + importancia;
-					}
-					oos.writeObject(libroGuardar + "\n");
+					oos.writeObject(libro );
 				}
 
 				oos.close();

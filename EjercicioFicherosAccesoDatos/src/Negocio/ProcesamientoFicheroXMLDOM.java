@@ -78,7 +78,65 @@ public class ProcesamientoFicheroXMLDOM extends ProcesamientoFichero {
 
 	@Override
 	public void guardarFichero(ArrayList<Libro> listaLibros) {
-
+		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder dBuilder;
+		try {
+			dBuilder = dbFactory.newDocumentBuilder();
+			Document doc =dBuilder.newDocument();
+			Element rootElement = doc.createElementNS(null, "Libros");
+			doc.appendChild(rootElement);
+			
+			for(Libro l:listaLibros) {
+				Element libro = doc.createElement("Libro");
+				Element node = doc.createElement("Titulo");
+				node.appendChild(doc.createTextNode(l.getTituloLibro()));
+				libro.appendChild(node);
+				node = doc.createElement("Editorial");
+				node.appendChild(doc.createTextNode(l.getEditorial()));
+				libro.appendChild(node);
+				
+				node = doc.createElement("Autor");
+				node.appendChild(doc.createTextNode(l.getAutor()));
+				libro.appendChild(node);
+				
+				node = doc.createElement("FechaPublicacion");
+				node.appendChild(doc.createTextNode(l.getFechaPublicacion().toString()));
+				libro.appendChild(node);
+				
+				node = doc.createElement("Genero");
+				node.appendChild(doc.createTextNode(l.getGenero()));
+				libro.appendChild(node);
+				
+				
+				Element personajesPrincipales = doc.createElement("PersonajesPrincipales");
+				libro.appendChild(personajesPrincipales);
+				ArrayList<Personaje> listaPersonajes = new ArrayList<>();
+				for(Personaje p:listaPersonajes) {
+					Element personaje = doc.createElement("Personaje");
+					personajesPrincipales.appendChild(personaje);
+					
+					node = doc.createElement("Nombre");
+					node.appendChild(doc.createTextNode(p.getNombre()));
+					personaje.appendChild(node);
+					
+					node = doc.createElement("Importancia");
+					node.appendChild(doc.createTextNode(p.getImportancia()));
+					personaje.appendChild(node);
+					
+				}
+				
+			}
+		
+		}catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		
+		
 	}
 
 }

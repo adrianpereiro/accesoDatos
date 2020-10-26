@@ -3,7 +3,9 @@ package Modelo;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import com.sun.xml.txw2.annotation.XmlElement;
+
+import javax.xml.bind.annotation.XmlElement;
+
 
 public class Libro  implements Serializable {
 	/**
@@ -78,7 +80,7 @@ public class Libro  implements Serializable {
 	public String toString() {
 		return "Libro \n-Titulo Libro=" + tituloLibro +"\n"+ "-Editorial=" + Editorial +"\n"+ "-Autor=" + Autor
 				+"\n"+ "-Fecha de Publicacion=" + fechaPublicacion +"\n"+ "-Genero=" + Genero +"\n"+ "-Personajes Principales="
-				+ personajesPrincipales.toString() ;
+				+ personajesPrincipales.toString();
 	}
 
 

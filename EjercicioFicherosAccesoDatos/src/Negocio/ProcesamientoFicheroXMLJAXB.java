@@ -1,14 +1,15 @@
 package Negocio;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import Modelo.Libro;
 
-public class PrcoesamientoFicheroXMLJAXB extends ProcesamientoFichero{
+public class ProcesamientoFicheroXMLJAXB extends ProcesamientoFichero{
 
 	@Override
 	public ArrayList<Libro> leerFichero() {
-		// TODO Auto-generated method stub
+		File f = new File("");
 		return null;
 	}
 

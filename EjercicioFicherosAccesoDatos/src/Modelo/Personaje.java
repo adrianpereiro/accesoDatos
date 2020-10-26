@@ -10,8 +10,7 @@ public class Personaje  implements Serializable {
 	private String nombre;
 	private String genero;
 	private String importancia;
-
-
+		
 	public Personaje(String nombre, String importancia) {
 		this.nombre = nombre;
 		this.importancia = importancia;
