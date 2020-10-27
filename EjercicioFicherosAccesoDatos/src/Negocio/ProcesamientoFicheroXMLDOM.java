@@ -9,6 +9,14 @@ import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -78,6 +86,7 @@ public class ProcesamientoFicheroXMLDOM extends ProcesamientoFichero {
 
 	@Override
 	public void guardarFichero(ArrayList<Libro> listaLibros) {
+		String ruta = "C:\\Users\\PC33\\Desktop\\librosXmlDOM.txt";
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder;
 		try {
@@ -110,10 +119,9 @@ public class ProcesamientoFicheroXMLDOM extends ProcesamientoFichero {
 				
 				Element personajesPrincipales = doc.createElement("PersonajesPrincipales");
 				libro.appendChild(personajesPrincipales);
-				ArrayList<Personaje> listaPersonajes = new ArrayList<>();
-				for(Personaje p:listaPersonajes) {
+				for(Personaje p:l.getPersonajesPrincipales()) {
 					Element personaje = doc.createElement("Personaje");
-					personajesPrincipales.appendChild(personaje);
+					
 					
 					node = doc.createElement("Nombre");
 					node.appendChild(doc.createTextNode(p.getNombre()));
@@ -123,20 +131,30 @@ public class ProcesamientoFicheroXMLDOM extends ProcesamientoFichero {
 					node.appendChild(doc.createTextNode(p.getImportancia()));
 					personaje.appendChild(node);
 					
+					personajesPrincipales.appendChild(personaje);
 				}
-				
+				rootElement.appendChild(libro);
 			}
+			
+			TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			Transformer transformer = transformerFactory.newTransformer();
+			
+			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+			DOMSource source = new DOMSource(doc);
+			
+			StreamResult file = new StreamResult(new File(ruta));
+			
+			transformer.transform(source, file);
 		
 		}catch (ParserConfigurationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (TransformerConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (TransformerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
-		
-		
-		
-		
-		
 	}
-
 }
