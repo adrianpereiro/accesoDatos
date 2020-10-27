@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name="listaLibros")
+@XmlRootElement(name="libros")
 public class LibroJAXB {
 	private ArrayList<Libro> listaLibros;
 	
@@ -14,7 +14,7 @@ public class LibroJAXB {
 	}
 	
 	@XmlElement(name="libro")
-	public ArrayList<Libro> getListaAlumnos(){
+	public ArrayList<Libro> getListaLibros(){
 		return this.listaLibros;
 	}
 }

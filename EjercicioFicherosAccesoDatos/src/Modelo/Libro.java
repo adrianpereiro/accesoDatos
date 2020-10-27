@@ -5,8 +5,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-
+@XmlRootElement
+@XmlType(propOrder={"tituloLibro", "editorial", "autor","fechaPublicacion","genero","personajesPrincipales"})
 public class Libro  implements Serializable {
 	/**
 	 * 
@@ -28,11 +33,15 @@ public class Libro  implements Serializable {
 		this.personajesPrincipales = personajesPrincipales;
 
 	}
+	
+	public Libro() {
+		
+	}
 
 	public String getTituloLibro() {
 		return tituloLibro;
 	}
-	@XmlElement
+	@XmlElement(name="Titulo")
 	public void setTituloLibro(String tituloLibro) {
 		this.tituloLibro = tituloLibro;
 	}
@@ -40,7 +49,7 @@ public class Libro  implements Serializable {
 	public String getEditorial() {
 		return Editorial;
 	}
-	@XmlElement
+	@XmlElement (name="Editorial")
 	public void setEditorial(String editorial) {
 		Editorial = editorial;
 	}
@@ -48,7 +57,7 @@ public class Libro  implements Serializable {
 	public String getAutor() {
 		return Autor;
 	}
-	@XmlElement
+	@XmlElement (name="Autor")
 	public void setAutor(String autor) {
 		Autor = autor;
 	}
@@ -56,7 +65,7 @@ public class Libro  implements Serializable {
 	public LocalDate getFechaPublicacion() {
 		return fechaPublicacion;
 	}
-	@XmlElement
+	@XmlElement (name="FechaDePublicacion") @XmlJavaTypeAdapter(value = LocalDateAdapter.class)
 	public void setFechaPublicacion(LocalDate fechaPublicacion) {
 		this.fechaPublicacion = fechaPublicacion;
 	}
@@ -64,23 +73,24 @@ public class Libro  implements Serializable {
 	public String getGenero() {
 		return Genero;
 	}
-	@XmlElement
+	@XmlElement (name="Genero")
 	public void setGenero(String genero) {
 		Genero = genero;
 	}
 
 	public ArrayList<Personaje> getPersonajesPrincipales() {
 		return personajesPrincipales;
-	}
-	@XmlElement
+	} 
+	 @XmlElementWrapper(name="personajesPrincipales")
+	    @XmlElement(name="personaje")
 	public void setPersonajesPrincipales(ArrayList<Personaje> personajesPrincipales) {
 		this.personajesPrincipales = personajesPrincipales;
 	}
 	@Override
 	public String toString() {
 		return "Libro \n-Titulo Libro=" + tituloLibro +"\n"+ "-Editorial=" + Editorial +"\n"+ "-Autor=" + Autor
-				+"\n"+ "-Fecha de Publicacion=" + fechaPublicacion +"\n"+ "-Genero=" + Genero +"\n"+ "-Personajes Principales="
-				+ personajesPrincipales.toString();
+				+"\n"+ "-Fecha de Publicacion=" + fechaPublicacion +"\n"+ "-Genero=" + Genero; //+"\n"+ "-Personajes Principales="
+				//+ personajesPrincipales.toString();
 	}
 
 
