@@ -84,13 +84,11 @@ public class ProcesamientoFicheroJSON extends ProcesamientoFichero {
 			fw = new FileWriter(new File(ruta));
 			fw.write(json);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
 				fw.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
