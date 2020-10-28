@@ -8,11 +8,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 import Modelo.Libro;
-import Modelo.Personaje;
+
 
 public class ProcesamientoFicheroObjetos extends ProcesamientoFichero {
 
@@ -37,6 +36,8 @@ public class ProcesamientoFicheroObjetos extends ProcesamientoFichero {
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			}
+		}else {
+			System.out.println("Fichero no encontrado");
 		}
 		return listaLibros;
 

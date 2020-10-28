@@ -2,6 +2,7 @@ package Entrada;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+
 import Modelo.Libro;
 import Modelo.Personaje;
 import Negocio.IProcesamientoFichero;
@@ -18,7 +19,7 @@ public class Ejercicio {
 		procesarFicheroJSON();
 	}
 
-	/*public static void procesarFicheroPlano() {
+	public static void procesarFicheroPlano() {
 		IProcesamientoFichero proc = new ProcesamientoFicheroPlano();
 		ArrayList<Libro> listaLibros = new ArrayList<>();
 		ArrayList<Personaje> listaPersonaje = new ArrayList<>();
@@ -33,8 +34,8 @@ public class Ejercicio {
 		listaLibros.add(l2);
 		proc.guardarFichero(listaLibros);
 	}
-	*/
-	/*public static void procesarFicheroXMLDOM() {
+	
+	public static void procesarFicheroXMLDOM() {
 		IProcesamientoFichero proc = new ProcesamientoFicheroXMLDOM();
 		ArrayList<Libro> listaLibros = new ArrayList<>();
 		ArrayList<Personaje> listaPersonaje = new ArrayList<>();
@@ -47,14 +48,14 @@ public class Ejercicio {
 		Libro l2 = new Libro("EY", "Que tal", "Buenas", fecha, "Neutro", listaPersonaje);
 		listaLibros.add(l1);
 		listaLibros.add(l2);
-		ArrayList<Libro> listaLibros = proc.leerFichero();
-		for(Libro libro : listaLibros) {
+		ArrayList<Libro> listaLibros2 = proc.leerFichero();
+		for(Libro libro : listaLibros2) {
 			System.out.println(libro.toString());
 		}
 		proc.guardarFichero(listaLibros);
 	}
-	*/
-	/*public static void procesarFicheroXMLJAXB() {
+	
+	public static void procesarFicheroXMLJAXB() {
 		IProcesamientoFichero proc = new ProcesamientoFicheroXMLJAXB();
 		ArrayList<Libro> listaLibros = new ArrayList<>();
 		ArrayList<Personaje> listaPersonaje = new ArrayList<>();
@@ -76,10 +77,10 @@ public class Ejercicio {
 		proc.guardarFichero(listaLibros);
 		
 	}
-	*/
+	
 	public static void procesarFicheroJSON() {
 		IProcesamientoFichero proc = new ProcesamientoFicheroJSON();
-		/*ArrayList<Libro> listaLibros = new ArrayList<>();
+		ArrayList<Libro> listaLibros = new ArrayList<>();
 		ArrayList<Personaje> listaPersonaje = new ArrayList<>();
 		Personaje p1 = new Personaje("Javier", "Nula");
 		Personaje p2 = new Personaje("Zaida", "Principal");
@@ -90,13 +91,13 @@ public class Ejercicio {
 		Libro l2 = new Libro("EY", "Que tal", "Buenas", fecha, "Neutro", listaPersonaje);
 		listaLibros.add(l1);
 		listaLibros.add(l2);
-		 */
+		
 		ArrayList<Libro> listaLibros2 = proc.leerFichero();
 		for(Libro libro : listaLibros2) {
 			System.out.println(libro.toString());
 		}
 		
-		//proc.guardarFichero(listaLibros);
+		proc.guardarFichero(listaLibros);
 	}
 	
 }

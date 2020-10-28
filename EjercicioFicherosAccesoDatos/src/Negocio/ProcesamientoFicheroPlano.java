@@ -17,8 +17,8 @@ public class ProcesamientoFicheroPlano extends ProcesamientoFichero {
 	@Override
 	public ArrayList<Libro> leerFichero() {
 		ArrayList<Libro> listaLibros = new ArrayList<>();
-
-		File f = new File("");
+		String ruta = "";
+		File f = new File(ruta);
 		if (ProcesamientoFichero.existeFichero(f) == false) {
 			ArrayList<Personaje> listaPersonajes = new ArrayList<>();
 			FileInputStream fis;
@@ -52,6 +52,8 @@ public class ProcesamientoFicheroPlano extends ProcesamientoFichero {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}else {
+			System.out.println("Fichero no encontrado");
 		}
 		return listaLibros;
 	}
