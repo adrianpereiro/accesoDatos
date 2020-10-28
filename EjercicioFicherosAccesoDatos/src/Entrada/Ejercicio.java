@@ -13,9 +13,9 @@ import Negocio.ProcesamientoFicheroXMLJAXB;
 
 public class Ejercicio {
 	public static void main(String[] args) {
-		//procesarFicheroPlano();
-		//procesarFicheroXMLDOM();
-		//procesarFicheroXMLJAXB();
+		procesarFicheroPlano();
+		procesarFicheroXMLDOM();
+		procesarFicheroXMLJAXB();
 		procesarFicheroJSON();
 	}
 
