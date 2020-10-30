@@ -16,10 +16,10 @@ public class ProcesamientoFicheroXMLJAXB extends ProcesamientoFichero {
 
 	@Override
 	public ArrayList<Libro> leerFichero() {
-		String ruta = "";
+		String ruta = "C:\\Users\\PC33\\Desktop\\xmlJAXBLibros.txt";
 		File f = new File(ruta);
 		ArrayList<Libro> listaLibros = new ArrayList<Libro>();
-		if (ProcesamientoFichero.existeFichero(f) == false) {
+		if (ProcesamientoFichero.existeFichero(f) == true) {
 			JAXBContext jaxbContext;
 			try {
 				jaxbContext = JAXBContext.newInstance(LibroJAXB.class);
@@ -33,7 +33,7 @@ public class ProcesamientoFicheroXMLJAXB extends ProcesamientoFichero {
 				e.printStackTrace();
 			}
 		}else {
-			System.out.println("Fichero no encontrado");
+			System.out.println("Fichero no encontrado(JAXB)");
 		}
 		return listaLibros;
 	}

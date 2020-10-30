@@ -17,9 +17,9 @@ public class ProcesamientoFicheroPlano extends ProcesamientoFichero {
 	@Override
 	public ArrayList<Libro> leerFichero() {
 		ArrayList<Libro> listaLibros = new ArrayList<>();
-		String ruta = "";
+		String ruta = "C:\\Users\\PC33\\Desktop\\ficheroPlano.txt";
 		File f = new File(ruta);
-		if (ProcesamientoFichero.existeFichero(f) == false) {
+		if (ProcesamientoFichero.existeFichero(f) == true) {
 			ArrayList<Personaje> listaPersonajes = new ArrayList<>();
 			FileInputStream fis;
 			try {
@@ -40,6 +40,10 @@ public class ProcesamientoFicheroPlano extends ProcesamientoFichero {
 					String[] datosPersonajes = listaDatosPersonajes.split("-");
 					for (int i = 0; i < datosPersonajes.length; i++) {
 						String personaje = datosPersonajes[i];
+						if(personaje==null || personaje.compareTo("")==0) {							
+							continue;
+						}
+						
 						String[] datosPersonaje2 = personaje.split(",");
 						String nombrePersonaje = datosPersonaje2[0];
 						String importancia = datosPersonaje2[1];
@@ -53,14 +57,14 @@ public class ProcesamientoFicheroPlano extends ProcesamientoFichero {
 				e.printStackTrace();
 			}
 		}else {
-			System.out.println("Fichero no encontrado");
+			System.out.println("Fichero no encontrado(Plano)");
 		}
 		return listaLibros;
 	}
 
 	public void guardarFichero(ArrayList<Libro> listaLibros) {
-		File f = new File("C:\\Users\\PC33\\Desktop\\prueba.txt");
-		if (ProcesamientoFichero.existeFichero(f) == false) {
+		File f = new File("C:\\Users\\PC33\\Desktop\\ficheroPlano.txt");
+		if (ProcesamientoFichero.existeFichero(f) == true) {
 			FileWriter fiw = null;
 			try {
 				fiw = new FileWriter(f);
@@ -80,6 +84,7 @@ public class ProcesamientoFicheroPlano extends ProcesamientoFichero {
 						libroGuardar = libroGuardar + "-" + nombre + "," + importancia;
 					}
 					fiw.write(libroGuardar + "\n");
+					System.out.println(libroGuardar);
 				}
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();

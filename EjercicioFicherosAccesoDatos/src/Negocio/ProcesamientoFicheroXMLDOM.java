@@ -31,9 +31,9 @@ public class ProcesamientoFicheroXMLDOM extends ProcesamientoFichero {
 	@Override
 	public ArrayList<Libro> leerFichero() {
 		ArrayList<Libro> listaLibros = new ArrayList<>();
-		String ruta = "";
+		String ruta = "C:\\Users\\PC33\\Desktop\\librosXmlDOM.txt";
 		File f = new File(ruta);
-		if (ProcesamientoFichero.existeFichero(f) == false) {
+		if (ProcesamientoFichero.existeFichero(f) == true) {
 			try {
 				ArrayList<Personaje> listaPersonajes = new ArrayList<>();
 
@@ -53,8 +53,8 @@ public class ProcesamientoFicheroXMLDOM extends ProcesamientoFichero {
 								.getNodeValue();
 						String autor = libro.getElementsByTagName("Autor").item(0).getChildNodes().item(0)
 								.getNodeValue();
-						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-						LocalDate fechaPublicacion = LocalDate.parse((libro.getElementsByTagName("FechaDePublicacion")
+						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+						LocalDate fechaPublicacion = LocalDate.parse((libro.getElementsByTagName("FechaPublicacion")
 								.item(0).getChildNodes().item(0).getNodeValue()), formatter);
 						String genero = libro.getElementsByTagName("Genero").item(0).getChildNodes().item(0)
 								.getNodeValue();
@@ -88,7 +88,7 @@ public class ProcesamientoFicheroXMLDOM extends ProcesamientoFichero {
 				e.printStackTrace();
 			}
 		}else {
-			System.out.println("Fichero no encontrado");
+			System.out.println("Fichero no encontrado(DOM)");
 		}
 		return listaLibros;
 	}

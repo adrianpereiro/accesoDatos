@@ -23,13 +23,13 @@ public class ProcesamientoFicheroJSON extends ProcesamientoFichero {
 	@Override
 	public ArrayList<Libro> leerFichero() {
 		LibroGSON[] libros = null;
-		String ruta="";
+		String ruta="C:\\Users\\PC33\\Desktop\\librosJSON.txt";
 		ArrayList<Libro> listaLibro = new ArrayList<Libro>();
 		Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateAdapterJSON())
 				.excludeFieldsWithoutExposeAnnotation().create();
 		try {
 			FileReader fr = new FileReader(new File(ruta));
-			if (ProcesamientoFichero.existeFichero(new File(ruta)) == false) {
+			if (ProcesamientoFichero.existeFichero(new File(ruta)) == true) {
 				libros = gson.fromJson(fr, LibroGSON[].class);
 
 				ArrayList<LibroGSON> listaGSON = new ArrayList<LibroGSON>(Arrays.asList(libros));
@@ -49,7 +49,7 @@ public class ProcesamientoFicheroJSON extends ProcesamientoFichero {
 					listaLibro.add(nl);
 				}
 			}else {
-				System.out.println("El fichero no existe");
+				System.out.println("El fichero no existe(JSON)");
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -61,7 +61,7 @@ public class ProcesamientoFicheroJSON extends ProcesamientoFichero {
 	@Override
 	public void guardarFichero(ArrayList<Libro> listaLibros) {
 		ArrayList<LibroGSON> listaLibrosGSON = new ArrayList<>();
-		String ruta="";
+		String ruta="C:\\Users\\PC33\\Desktop\\librosJSON.txt";
 		for (Libro l : listaLibros) {
 			ArrayList<PersonajeGSON> listaPersonajesGSON = new ArrayList<>();
 			ArrayList<Personaje> listaPersonajes = l.getPersonajesPrincipales();
@@ -92,7 +92,5 @@ public class ProcesamientoFicheroJSON extends ProcesamientoFichero {
 				e.printStackTrace();
 			}
 		}
-
 	}
-
 }

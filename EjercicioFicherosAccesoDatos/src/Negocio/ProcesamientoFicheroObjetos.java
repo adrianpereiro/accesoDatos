@@ -19,7 +19,7 @@ public class ProcesamientoFicheroObjetos extends ProcesamientoFichero {
 	public ArrayList<Libro> leerFichero() {
 		File f = new File("");
 		ArrayList<Libro> listaLibros = new ArrayList<>();
-		if (ProcesamientoFichero.existeFichero(f) == false) {
+		if (ProcesamientoFichero.existeFichero(f) == true) {
 			try {
 				@SuppressWarnings("resource")
 				ObjectInputStream entrada = new ObjectInputStream(new FileInputStream(f));
@@ -37,7 +37,7 @@ public class ProcesamientoFicheroObjetos extends ProcesamientoFichero {
 				e.printStackTrace();
 			}
 		}else {
-			System.out.println("Fichero no encontrado");
+			System.out.println("Fichero no encontrado(Objetos)");
 		}
 		return listaLibros;
 

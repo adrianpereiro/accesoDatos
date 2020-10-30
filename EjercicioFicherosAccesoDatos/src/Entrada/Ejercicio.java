@@ -33,6 +33,7 @@ public class Ejercicio {
 		listaLibros.add(l1);
 		listaLibros.add(l2);
 		proc.guardarFichero(listaLibros);
+		proc.leerFichero();
 	}
 	
 	public static void procesarFicheroXMLDOM() {
@@ -48,11 +49,14 @@ public class Ejercicio {
 		Libro l2 = new Libro("EY", "Que tal", "Buenas", fecha, "Neutro", listaPersonaje);
 		listaLibros.add(l1);
 		listaLibros.add(l2);
+		proc.guardarFichero(listaLibros);
+		
 		ArrayList<Libro> listaLibros2 = proc.leerFichero();
+		System.out.println("DOM\n");
 		for(Libro libro : listaLibros2) {
 			System.out.println(libro.toString());
 		}
-		proc.guardarFichero(listaLibros);
+		
 	}
 	
 	public static void procesarFicheroXMLJAXB() {
@@ -68,13 +72,14 @@ public class Ejercicio {
 		Libro l2 = new Libro("EY", "Que tal", "Buenas", fecha, "Neutro", listaPersonaje);
 		listaLibros.add(l1);
 		listaLibros.add(l2);
-		
+		proc.guardarFichero(listaLibros);
+		System.out.println("JAXB\n");
 		ArrayList<Libro> listaLibros2 = proc.leerFichero();
 		for(Libro libro : listaLibros2) {
 			System.out.println(libro.toString());
 		}
 		
-		proc.guardarFichero(listaLibros);
+		
 		
 	}
 	
@@ -91,13 +96,14 @@ public class Ejercicio {
 		Libro l2 = new Libro("EY", "Que tal", "Buenas", fecha, "Neutro", listaPersonaje);
 		listaLibros.add(l1);
 		listaLibros.add(l2);
-		
+		proc.guardarFichero(listaLibros);
+		System.out.println("JSON\n");
 		ArrayList<Libro> listaLibros2 = proc.leerFichero();
 		for(Libro libro : listaLibros2) {
 			System.out.println(libro.toString());
 		}
 		
-		proc.guardarFichero(listaLibros);
+		
 	}
 	
 }
