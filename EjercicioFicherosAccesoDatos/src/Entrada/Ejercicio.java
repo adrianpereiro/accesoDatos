@@ -52,7 +52,7 @@ public class Ejercicio {
 		proc.guardarFichero(listaLibros);
 		
 		ArrayList<Libro> listaLibros2 = proc.leerFichero();
-		System.out.println("DOM\n");
+		System.out.println("\nDOM\n");
 		for(Libro libro : listaLibros2) {
 			System.out.println(libro.toString());
 		}
@@ -73,13 +73,11 @@ public class Ejercicio {
 		listaLibros.add(l1);
 		listaLibros.add(l2);
 		proc.guardarFichero(listaLibros);
-		System.out.println("JAXB\n");
+		System.out.println("\nJAXB\n");
 		ArrayList<Libro> listaLibros2 = proc.leerFichero();
 		for(Libro libro : listaLibros2) {
 			System.out.println(libro.toString());
 		}
-		
-		
 		
 	}
 	
@@ -97,7 +95,7 @@ public class Ejercicio {
 		listaLibros.add(l1);
 		listaLibros.add(l2);
 		proc.guardarFichero(listaLibros);
-		System.out.println("JSON\n");
+		System.out.println("\nJSON\n");
 		ArrayList<Libro> listaLibros2 = proc.leerFichero();
 		for(Libro libro : listaLibros2) {
 			System.out.println(libro.toString());
