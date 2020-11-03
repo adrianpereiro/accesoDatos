@@ -3,5 +3,9 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="src/lib/gson-2.8.6.jar"/>
+	<classpathentry kind="lib" path="src/lib/jackson-annotations-2.11.3.jar"/>
+	<classpathentry kind="lib" path="src/lib/jackson-core-2.11.3.jar"/>
+	<classpathentry kind="lib" path="src/lib/jackson-databind-2.11.3.jar"/>
+	<classpathentry kind="lib" path="src/lib/jackson-datatype-jsr310-2.11.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
