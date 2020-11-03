@@ -1,20 +1,16 @@
 package Negocio;
 
-import java.io.File;
 import java.io.IOException;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.module.SimpleModule;
-import com.fasterxml.jackson.datatype.jsr310.JSR310Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
 import Modelo.Libro;
 import Modelo.LibroJACKSON;
+import Modelo.PersonajeGSON;
 
 public class ProcesamientoFicheroJACKSON extends ProcesamientoFichero {
 
@@ -64,8 +60,9 @@ public class ProcesamientoFicheroJACKSON extends ProcesamientoFichero {
 				+ "]";
 		try {
 			LibroJACKSON[] libros = JSON_MAPPER.readValue(jsonString, LibroJACKSON[].class);
-			for(LibroJACKSON l : libros) {
-			System.out.println(l.toString());
+			for(LibroJACKSON lJ : libros) {
+			ArrayList<PersonajeGSON> pJ = lJ.getPersonajesPrincipales();
+			System.out.println(lJ.toString());
 			}
 		} catch (JsonGenerationException e) {
 			// TODO Auto-generated catch block
