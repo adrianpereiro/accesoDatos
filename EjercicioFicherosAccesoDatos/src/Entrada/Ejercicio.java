@@ -17,7 +17,7 @@ public class Ejercicio {
 //		procesarFicheroPlano();
 //		procesarFicheroXMLDOM();
 //		procesarFicheroXMLJAXB();
-//		procesarFicheroJSON();
+	//	procesarFicheroJSON();
 		procesarFicheroJACKSON();
 	}
 		
@@ -120,7 +120,7 @@ public class Ejercicio {
 		listaLibros.add(l1);
 		listaLibros.add(l2);
 		proc.guardarFichero(listaLibros);*/
-		System.out.println("\nJSON\n");
+		System.out.println("\nJACKSON\n");
 		ArrayList<Libro> listaLibros2 = proc.leerFichero();
 		for(Libro libro : listaLibros2) {
 			System.out.println(libro.toString());

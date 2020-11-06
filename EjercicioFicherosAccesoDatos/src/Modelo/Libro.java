@@ -89,8 +89,7 @@ public class Libro  implements Serializable {
 	@Override
 	public String toString() {
 		return "Libro \n-Titulo Libro=" + tituloLibro +"\n"+ "-Editorial=" + Editorial +"\n"+ "-Autor=" + Autor
-				+"\n"+ "-Fecha de Publicacion=" + fechaPublicacion +"\n"+ "-Genero=" + Genero; //+"\n"+ "-Personajes Principales="
-				//+ personajesPrincipales.toString();
+				+"\n"+ "-Fecha de Publicacion=" + fechaPublicacion +"\n"+ "-Genero=" + Genero +"\n"+ "-Personajes Principales=" + personajesPrincipales.toString();
 	}
 
 

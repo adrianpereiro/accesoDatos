@@ -1,6 +1,12 @@
 package Negocio;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
@@ -10,60 +16,52 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import Modelo.Libro;
 import Modelo.LibroJACKSON;
+import Modelo.Personaje;
 import Modelo.PersonajeGSON;
+import Modelo.PersonajeJACKSON;
 
 public class ProcesamientoFicheroJACKSON extends ProcesamientoFichero {
 
 	@Override
 	public ArrayList<Libro> leerFichero() {
 		ArrayList<Libro> listaLibros = new ArrayList<>();	
+		BufferedReader br;
 		String ruta="C:\\Users\\PC33\\Desktop\\librosJSON.txt";
 		ObjectMapper JSON_MAPPER = new ObjectMapper();
 		//JSON_MAPPER.registerModule(new JSR310Module());
 		//JSON_MAPPER.registerModule(new SimpleModule().addSerializer(new LocalDateSerializer(DateTimeFormatter.ISO_LOCAL_DATE)));
 		JSON_MAPPER.registerModule(new JavaTimeModule());
-		String jsonString ="[\r\n"
-				+ "  {\r\n"
-				+ "    \"titulo\": \"Hola\",\r\n"
-				+ "    \"editorial\": \"Que tal\",\r\n"
-				+ "    \"autor\": \"Buenas\",\r\n"
-				+ "    \"fechaDePublicacion\": \"2001-05-20\",\r\n"
-				+ "    \"genero\": \"Neutro\",\r\n"
-				+ "    \"personajesPrincipales\": [\r\n"
-				+ "      {\r\n"
-				+ "        \"nombre\": \"Javier\",\r\n"
-				+ "        \"importancia\": \"Nula\"\r\n"
-				+ "      },\r\n"
-				+ "      {\r\n"
-				+ "        \"nombre\": \"Zaida\",\r\n"
-				+ "        \"importancia\": \"Principal\"\r\n"
-				+ "      }\r\n"
-				+ "    ]\r\n"
-				+ "  },\r\n"
-				+ "  {\r\n"
-				+ "    \"titulo\": \"EY\",\r\n"
-				+ "    \"editorial\": \"Que tal\",\r\n"
-				+ "    \"autor\": \"Buenas\",\r\n"
-				+ "    \"fechaDePublicacion\": \"2001-05-20\",\r\n"
-				+ "    \"genero\": \"Neutro\",\r\n"
-				+ "    \"personajesPrincipales\": [\r\n"
-				+ "      {\r\n"
-				+ "        \"nombre\": \"Javier\",\r\n"
-				+ "        \"importancia\": \"Nula\"\r\n"
-				+ "      },\r\n"
-				+ "      {\r\n"
-				+ "        \"nombre\": \"Zaida\",\r\n"
-				+ "        \"importancia\": \"Principal\"\r\n"
-				+ "      }\r\n"
-				+ "    ]\r\n"
-				+ "  }\r\n"
-				+ "]";
 		try {
-			LibroJACKSON[] libros = JSON_MAPPER.readValue(jsonString, LibroJACKSON[].class);
-			for(LibroJACKSON lJ : libros) {
-			ArrayList<PersonajeGSON> pJ = lJ.getPersonajesPrincipales();
-			System.out.println(lJ.toString());
+		FileInputStream fis = new FileInputStream(new File(ruta));
+		InputStreamReader isr = new InputStreamReader(fis);
+		br = new BufferedReader(isr);
+		String jsonString="";
+		String lineaJSON;
+		while((lineaJSON = br.readLine() )!=null) {
+			jsonString = jsonString + lineaJSON;
+		}
+		LibroJACKSON[] libros = JSON_MAPPER.readValue(jsonString, LibroJACKSON[].class);
+		for(LibroJACKSON lJ : libros) {
+			
+			ArrayList<Personaje> personajesPrincipales = new ArrayList<>() ;
+			String tituloLibro = lJ.getTituloLibro();
+			String Editorial = lJ.getEditorial();
+			String Autor = lJ.getAutor();
+			LocalDate fechaPublicacion = lJ.getFechaPublicacion();
+			String Genero = lJ.getGenero();
+			ArrayList<PersonajeJACKSON> personajesPrincipalesJACKSON = lJ.getPersonajesPrincipales();
+			for(PersonajeJACKSON pJ : personajesPrincipalesJACKSON) {
+				String nombre = pJ.getNombre();
+				String importancia = pJ.getImportancia();
+				Personaje p = new Personaje(nombre, importancia);
+				personajesPrincipales.add(p);
 			}
+			
+			Libro l = new Libro(tituloLibro, Editorial, Autor, fechaPublicacion, Genero, personajesPrincipales);
+			listaLibros.add(l);
+			//System.out.println(lJ.toString());
+			
+		}
 		} catch (JsonGenerationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
