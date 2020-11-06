@@ -108,7 +108,7 @@ public class Ejercicio {
 		
 	public static void procesarFicheroJACKSON() {
 		IProcesamientoFichero proc = new ProcesamientoFicheroJACKSON();
-		/*ArrayList<Libro> listaLibros = new ArrayList<>();
+		ArrayList<Libro> listaLibros = new ArrayList<>();
 		ArrayList<Personaje> listaPersonaje = new ArrayList<>();
 		Personaje p1 = new Personaje("Javier", "Nula");
 		Personaje p2 = new Personaje("Zaida", "Principal");
@@ -119,12 +119,12 @@ public class Ejercicio {
 		Libro l2 = new Libro("EY", "Que tal", "Buenas", fecha, "Neutro", listaPersonaje);
 		listaLibros.add(l1);
 		listaLibros.add(l2);
-		proc.guardarFichero(listaLibros);*/
-		System.out.println("\nJACKSON\n");
-		ArrayList<Libro> listaLibros2 = proc.leerFichero();
-		for(Libro libro : listaLibros2) {
-			System.out.println(libro.toString());
-		}
+		proc.guardarFichero(listaLibros);
+//		System.out.println("\nJACKSON\n");
+//		ArrayList<Libro> listaLibros2 = proc.leerFichero();
+//		for(Libro libro : listaLibros2) {
+//			System.out.println(libro.toString());
+//		}
 	}	
 		
 }		

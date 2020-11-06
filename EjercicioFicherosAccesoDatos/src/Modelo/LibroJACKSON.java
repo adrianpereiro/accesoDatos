@@ -4,10 +4,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonUnwrapped;
+//import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+//@JsonPropertyOrder({ "tituloLibro", "editorial", "autor", "fechaPublicacion", "genero", "personajesPrincipales"}) no se porque no funciona
 public class LibroJACKSON {
-
+	
 	@JsonProperty(value = "titulo")
 	private String tituloLibro;
 	@JsonProperty(value = "editorial")
@@ -19,7 +20,7 @@ public class LibroJACKSON {
 	@JsonProperty(value = "genero")
 	private String Genero;
 	@JsonProperty(value = "personajesPrincipales")
-	//@JsonUnwrapped
+
 	private ArrayList<PersonajeJACKSON> personajesPrincipales;
 
 	public LibroJACKSON(String tituloLibro, String Editorial, String Autor, LocalDate fechaPublicacion, String Genero, ArrayList<PersonajeJACKSON> personajesPrincipales) {
