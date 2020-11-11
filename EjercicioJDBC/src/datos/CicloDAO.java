@@ -1,5 +1,8 @@
 package datos;
 
-public class CicloDAO {
+import java.sql.Connection;
 
+public class CicloDAO {
+	ConexionMySQL conexion = new ConexionMySQL();
+	Connection con = conexion.creacionConexion();
 }

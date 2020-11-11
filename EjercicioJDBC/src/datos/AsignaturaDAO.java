@@ -1,5 +1,8 @@
 package datos;
 
-public class AsignaturaDAO {
+import java.sql.Connection;
 
+public class AsignaturaDAO {
+	ConexionMySQL conexion = new ConexionMySQL();
+	Connection con = conexion.creacionConexion();
 }

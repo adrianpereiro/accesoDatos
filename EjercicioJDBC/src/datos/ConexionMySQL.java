@@ -1,13 +1,24 @@
 package datos;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class ConexionMySQL implements IConexion {
 
 	@Override
 	public Connection creacionConexion() {
-		// TODO Auto-generated method stub
-		return null;
+		String url="jdbc:mysql://localhost:3306/prueba";
+		String usuario="root";
+		String pass="";
+		Connection c = null;
+		try {
+			c = DriverManager.getConnection(url, usuario, pass);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return c;
+
 	}
 
 	@Override
@@ -18,7 +29,11 @@ public class ConexionMySQL implements IConexion {
 
 	@Override
 	public void CargarDriver() {
-		// TODO Auto-generated method stub
+		try {
+			Class.forName("org.mariadb.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 		
 	}
 
