@@ -1,15 +1,19 @@
 package modelo;
 
+import java.util.ArrayList;
+
+import modelo.Entidades.Ciclo;
+
 public interface ICicloDAO {
-	public void insertar();
+	public void insertar(Ciclo ciclo);
 	
-	public void insertarMultiple();
+	public void insertarMultiple(ArrayList<Ciclo> listaCiclos);
 	
-	public void eliminar();
+	public void eliminar(Ciclo ciclo);
 	
-	public void eliminarMultiple();
+	public void eliminarMultiple(ArrayList<Ciclo> listaCiclos);
 	
-	public void modificar();
+	public void modificar(Ciclo ciclo);
 	
-	public void modificarMultiple();
+	public void modificarMultiple(ArrayList<Ciclo> listaCiclos);
 }
