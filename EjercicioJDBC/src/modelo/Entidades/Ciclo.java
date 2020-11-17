@@ -10,6 +10,11 @@ public class Ciclo {
 		this.nombre = nombre;
 		this.grado = grado;
 	}
+	
+	public Ciclo(String nombre, String grado) {
+		this.nombre = nombre;
+		this.grado = grado;
+	}
 
 	public int getId() {
 		return id;

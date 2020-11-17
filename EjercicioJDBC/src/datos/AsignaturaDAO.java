@@ -1,6 +1,5 @@
 package datos;
 
-import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -100,7 +99,7 @@ public class AsignaturaDAO implements IAsignaturaDAO {
 		ConexionMySQL conexion = new ConexionMySQL();
 		Connection con = conexion.creacionConexion();
 
-		String modificar = "UPDATE asignatura SET nombre = ?, horas = ?, idCiclo = ? WHERE nombre = ?";
+		String modificar = "UPDATE asignatura SET nombre = ?, horas = ?, idCiclo = ? WHERE nombre = ?;";
 
 		try {
 			PreparedStatement ps = con.prepareStatement(modificar);
@@ -122,7 +121,7 @@ public class AsignaturaDAO implements IAsignaturaDAO {
 		ConexionMySQL conexion = new ConexionMySQL();
 		Connection con = conexion.creacionConexion();
 		
-String modificar = "UPDATE asignatura SET nombre = ?, horas = ?, idCiclo = ? WHERE nombre = ?";
+		String modificar = "UPDATE asignatura SET nombre = ?, horas = ?, idCiclo = ? WHERE nombre = ?;";
 		try {
 			PreparedStatement ps = con.prepareStatement(modificar);
 			for(Asignatura asignatura : listaAsignaturas) {
