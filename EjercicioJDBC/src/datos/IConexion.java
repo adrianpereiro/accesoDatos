@@ -6,7 +6,5 @@ public interface IConexion {
 	
 	public Connection creacionConexion();
 	
-	public void cerrarConexion();
-	
-	public void CargarDriver();
+	public void cerrarConexion(Connection con);
 }

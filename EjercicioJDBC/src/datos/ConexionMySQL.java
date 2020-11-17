@@ -8,7 +8,8 @@ public class ConexionMySQL implements IConexion {
 
 	@Override
 	public Connection creacionConexion() {
-		String url="jdbc:mysql://localhost:3306/prueba";
+		CargarDriver();
+		String url="jdbc:mysql://localhost:3306/ejerciciojdbc";
 		String usuario="root";
 		String pass="";
 		Connection c = null;
@@ -22,13 +23,17 @@ public class ConexionMySQL implements IConexion {
 	}
 
 	@Override
-	public void cerrarConexion() {
-		// TODO Auto-generated method stub
+	public void cerrarConexion(Connection con) {
+		try {
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
-	@Override
-	public void CargarDriver() {
+	private void CargarDriver() {
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
 		} catch (ClassNotFoundException e) {

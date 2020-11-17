@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import modelo.ICicloDAO;
+import modelo.Entidades.Asignatura;
 import modelo.Entidades.Ciclo;
 
 public class CicloDAO implements ICicloDAO {
@@ -37,6 +38,11 @@ public class CicloDAO implements ICicloDAO {
 	}
 	@Override
 	public void modificarMultiple(ArrayList<Ciclo> listaCiclos) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void crearCicloAsignaturas(Ciclo ciclo, ArrayList<Asignatura> listaAsignaturas) {
 		// TODO Auto-generated method stub
 		
 	}

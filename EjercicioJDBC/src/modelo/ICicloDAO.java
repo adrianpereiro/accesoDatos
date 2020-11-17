@@ -2,6 +2,7 @@ package modelo;
 
 import java.util.ArrayList;
 
+import modelo.Entidades.Asignatura;
 import modelo.Entidades.Ciclo;
 
 public interface ICicloDAO {
@@ -16,4 +17,6 @@ public interface ICicloDAO {
 	public void modificar(Ciclo ciclo);
 	
 	public void modificarMultiple(ArrayList<Ciclo> listaCiclos);
+	
+	public void crearCicloAsignaturas(Ciclo ciclo, ArrayList<Asignatura> listaAsignaturas);
 }
