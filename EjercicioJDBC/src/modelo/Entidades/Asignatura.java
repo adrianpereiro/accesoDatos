@@ -6,6 +6,12 @@ public class Asignatura {
 	private int horasSemanales;
 	private int idCiclo;
 	
+	public Asignatura(String nombre, int horasSemanales, int idCiclo) {
+		this.nombre = nombre;
+		this.horasSemanales = horasSemanales;
+		this.idCiclo = idCiclo;
+	}
+
 	public Asignatura(int id, String nombre, int horasSemanales, int idCiclo) {
 		this.id = id;
 		this.nombre = nombre;

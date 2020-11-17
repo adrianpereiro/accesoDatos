@@ -2,99 +2,145 @@ package datos;
 
 import java.sql.Statement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 import modelo.IAsignaturaDAO;
 import modelo.Entidades.Asignatura;
 
-public class AsignaturaDAO implements IAsignaturaDAO{
-	
+public class AsignaturaDAO implements IAsignaturaDAO {
+
 	@Override
 	public void insertar(Asignatura asignatura) {
 		ConexionMySQL conexion = new ConexionMySQL();
 		Connection con = conexion.creacionConexion();
-		
-		String nombre = asignatura.getNombre();
-		int id = asignatura.getId();
-		int idCiclo = asignatura.getIdCiclo();
-		String insertar= "INSERT INTO ALUMNOS (nombre, horas, idCiclo)"
-				+ "VALUES ('" + nombre +"'," + id + ", " + idCiclo + ");"; 
+
+		String insertar = "INSERT INTO asignatura (nombre, horas, idCiclo) " + "VALUES (?,?,?);";
 		try {
-			Statement s = con.createStatement();
-			s.execute(insertar);
-			s.close();
+			PreparedStatement ps = con.prepareStatement(insertar);
+			ps.setString(1, asignatura.getNombre());
+			ps.setInt(2, asignatura.getHorasSemanales());
+			ps.setInt(3, asignatura.getIdCiclo());
+			ps.execute();
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		conexion.cerrarConexion(con);
 	}
-	
+
 	@Override
 	public void insertarMultiple(ArrayList<Asignatura> listaAsignaturas) {
 		ConexionMySQL conexion = new ConexionMySQL();
 		Connection con = conexion.creacionConexion();
-		
-		String insertar= "INSERT INTO ALUMNOS (nombre, horas, idCiclo)\r\n";
-		for(Asignatura asignatura : listaAsignaturas) {
-			String nombre = asignatura.getNombre();
-			int id = asignatura.getId();
-			int idCiclo = asignatura.getIdCiclo();
-			insertar = insertar
-					+ "VALUES ('" + nombre +"'," + id + ", " + idCiclo + ")";
-		}
-		insertar = insertar +";";
-		
-		Statement s;
+
+		String insertar = "INSERT INTO asignatura (nombre, horas, idCiclo) " + "VALUES (?,?,?);";
+
 		try {
-			s = con.createStatement();
-			s.execute(insertar);
-			s.close();
+			PreparedStatement ps = con.prepareStatement(insertar);
+			for (Asignatura asignatura : listaAsignaturas) {
+
+				ps.setString(1, asignatura.getNombre());
+				ps.setInt(2, asignatura.getHorasSemanales());
+				ps.setInt(3, asignatura.getIdCiclo());
+				ps.addBatch();
+			}
+			ps.executeBatch();
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		conexion.cerrarConexion(con);
 	}
-	
+
 	@Override
 	public void eliminar(Asignatura asignatura) {
 		ConexionMySQL conexion = new ConexionMySQL();
 		Connection con = conexion.creacionConexion();
-		
-		String eliminar = "DELETE FROM asignatura"
-				+"WHERE id = " + asignatura.getId();
-		
-		Statement s;
+
+		String eliminar = "DELETE FROM asignatura WHERE (nombre = ?);";
 		try {
-			s = con.createStatement();
-			s.execute(eliminar);
-			s.close();
+			PreparedStatement ps = con.prepareStatement(eliminar);
+			ps.setString(1, asignatura.getNombre());
+			ps.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+
+		conexion.cerrarConexion(con);
 	}
+
 	@Override
 	public void eliminarMultiple(ArrayList<Asignatura> listaAsignaturas) {
 		ConexionMySQL conexion = new ConexionMySQL();
 		Connection con = conexion.creacionConexion();
-		
+
+		String eliminar = "DELETE FROM asignatura WHERE (nombre = ?);";
+		try {
+			PreparedStatement ps = con.prepareStatement(eliminar);
+			for (Asignatura asignatura : listaAsignaturas) {
+				ps.setString(1, asignatura.getNombre());
+				ps.addBatch();
+			}
+			ps.executeBatch();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		conexion.cerrarConexion(con);
 	}
+
 	@Override
 	public void modificar(Asignatura asignatura) {
 		ConexionMySQL conexion = new ConexionMySQL();
 		Connection con = conexion.creacionConexion();
-		
+
+		String modificar = "UPDATE asignatura SET nombre = ?, horas = ?, idCiclo = ? WHERE nombre = ?";
+
+		try {
+			PreparedStatement ps = con.prepareStatement(modificar);
+			ps.setString(1, asignatura.getNombre());
+			ps.setInt(2, asignatura.getHorasSemanales());
+			ps.setInt(3, asignatura.getIdCiclo());
+			ps.setString(4, asignatura.getNombre());
+			ps.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		conexion.cerrarConexion(con);
 	}
+
 	@Override
 	public void modificarMultiple(ArrayList<Asignatura> listaAsignaturas) {
 		ConexionMySQL conexion = new ConexionMySQL();
 		Connection con = conexion.creacionConexion();
 		
+String modificar = "UPDATE asignatura SET nombre = ?, horas = ?, idCiclo = ? WHERE nombre = ?";
+		try {
+			PreparedStatement ps = con.prepareStatement(modificar);
+			for(Asignatura asignatura : listaAsignaturas) {
+			
+				
+				ps.setString(1, asignatura.getNombre());
+				ps.setInt(2, asignatura.getHorasSemanales());
+				ps.setInt(3, asignatura.getIdCiclo());
+				ps.setString(4, asignatura.getNombre());
+			
+				ps.addBatch();
+			}
+			ps.executeBatch();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		conexion.cerrarConexion(con);
 	}
 }
