@@ -10,27 +10,27 @@ import modelo.Entidades.Ciclo;
 public class Programa {
 
 	public static void main(String[] args) {
-//		Asignatura asig = new Asignatura("Acceso a datos", 160, 7);
-//		Asignatura asig2 = new Asignatura("Interfaces", 100, 1);
-//		ArrayList<Asignatura> listaAsignatura = new ArrayList<>();
-//		listaAsignatura.add(asig);
-//		listaAsignatura.add(asig2);
+		Asignatura asig = new Asignatura("Acceso a datos", 160, 12);
+		Asignatura asig2 = new Asignatura("Interfaces", 100, 12);
+		ArrayList<Asignatura> listaAsignatura = new ArrayList<>();
+		listaAsignatura.add(asig);
+		listaAsignatura.add(asig2);
 //		AsignaturaDAO proc = new AsignaturaDAO();
 //		proc.insertar(asig);
 //		proc.eliminar(asig);
 //		proc.insertarMultiple(listaAsignatura);
 //		proc.eliminarMultiple(listaAsignatura);
-
+//
 //		Asignatura asig3 = new Asignatura("Acceso a datos", 180, 7);
 //		proc.modificar(asig3);
-		
-//		Ciclo ciclo1 = new Ciclo("DAM", "Superior");
+//		
+		Ciclo ciclo1 = new Ciclo("DAM", "Superior");
 //		Ciclo ciclo2 = new Ciclo("DAW", "Medio");
 //		ArrayList<Ciclo> listaCiclos = new ArrayList<>();
 //		listaCiclos.add(ciclo1);
 //		listaCiclos.add(ciclo2);
-//		CicloDAO procCiclo = new CicloDAO();
-//		procCiclo.insertar(ciclo2);
+		CicloDAO procCiclo = new CicloDAO();
+//		procCiclo.insertar(ciclo1);
 //		procCiclo.eliminar(ciclo1);
 //		procCiclo.insertarMultiple(listaCiclos);
 //		procCiclo.eliminarMultiple(listaCiclos);
@@ -41,6 +41,11 @@ public class Programa {
 //		listaCiclosModificar.add(cicloModificar);
 //		listaCiclosModificar.add(cicloModificar2);
 //		procCiclo.modificarMultiple(listaCiclosModificar);
+		procCiclo.crearCicloAsignaturas(ciclo1, listaAsignatura);
+		System.out.println(ciclo1);
+		for(Asignatura a:listaAsignatura) {
+			System.out.println(a);
+		}
 	}
 
 }

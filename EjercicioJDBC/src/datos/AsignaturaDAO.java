@@ -27,6 +27,7 @@ public class AsignaturaDAO implements IAsignaturaDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println(asignatura.toString());
 		conexion.cerrarConexion(con);
 	}
 
@@ -44,7 +45,9 @@ public class AsignaturaDAO implements IAsignaturaDAO {
 				ps.setString(1, asignatura.getNombre());
 				ps.setInt(2, asignatura.getHorasSemanales());
 				ps.setInt(3, asignatura.getIdCiclo());
+				System.out.println(asignatura.toString());
 				ps.addBatch();
+				
 			}
 			ps.executeBatch();
 
@@ -70,7 +73,7 @@ public class AsignaturaDAO implements IAsignaturaDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		System.out.println(asignatura.toString() + " ha sido eliminado" );
 		conexion.cerrarConexion(con);
 	}
 
@@ -84,6 +87,7 @@ public class AsignaturaDAO implements IAsignaturaDAO {
 			PreparedStatement ps = con.prepareStatement(eliminar);
 			for (Asignatura asignatura : listaAsignaturas) {
 				ps.setString(1, asignatura.getNombre());
+				System.out.println(asignatura.toString() + " ha sido eliminado" );
 				ps.addBatch();
 			}
 			ps.executeBatch();
@@ -112,7 +116,7 @@ public class AsignaturaDAO implements IAsignaturaDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		System.out.println(asignatura.toString() + " ha sido modificado" );
 		conexion.cerrarConexion(con);
 	}
 
@@ -131,7 +135,7 @@ public class AsignaturaDAO implements IAsignaturaDAO {
 				ps.setInt(2, asignatura.getHorasSemanales());
 				ps.setInt(3, asignatura.getIdCiclo());
 				ps.setString(4, asignatura.getNombre());
-			
+				System.out.println(asignatura.toString() + " ha sido modificado" );
 				ps.addBatch();
 			}
 			ps.executeBatch();
