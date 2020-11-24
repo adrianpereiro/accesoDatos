@@ -1,6 +1,7 @@
 package datos;
 
 import java.sql.Statement;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,17 +21,21 @@ public class CicloDAO implements ICicloDAO {
 
 		String insertar = "INSERT INTO ciclo (nombre, grado) " + "VALUES (?,?);";
 		try {
-			PreparedStatement ps = con.prepareStatement(insertar);
+			PreparedStatement ps = con.prepareStatement(insertar, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, ciclo.getNombre());
 			ps.setString(2, ciclo.getGrado());
+			
 			ps.execute();
 
+			ResultSet rs = ps.getGeneratedKeys();
+			rs.next();
+			int id = rs.getInt(1);
+			ciclo.setId(id);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println(ciclo.toString() + " añadido");
 		conexion.cerrarConexion(con);
-
+		
 	}
 
 	@Override
@@ -41,15 +46,21 @@ public class CicloDAO implements ICicloDAO {
 		String insertar = "INSERT INTO ciclo (nombre, grado) " + "VALUES (?,?);";
 
 		try {
-			PreparedStatement ps = con.prepareStatement(insertar);
+			PreparedStatement ps = con.prepareStatement(insertar, Statement.RETURN_GENERATED_KEYS);
 			for (Ciclo ciclo : listaCiclos) {
 
 				ps.setString(1, ciclo.getNombre());
 				ps.setString(2, ciclo.getGrado());
-				System.out.println(ciclo.toString() + " añadido");
 				ps.addBatch();
 			}
 			ps.executeBatch();
+			ResultSet rs = ps.getGeneratedKeys();
+			int i = 0;
+			while (rs.next()) {
+				int id = rs.getInt(1);
+				listaCiclos.get(i).setId(id);
+				i++;
+			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -64,10 +75,11 @@ public class CicloDAO implements ICicloDAO {
 		ConexionMySQL conexion = new ConexionMySQL();
 		Connection con = conexion.creacionConexion();
 
-		String eliminar = "DELETE FROM ciclo WHERE (nombre = ?);";
+		String eliminar = "DELETE FROM ciclo WHERE (id = ?);";
 		try {
 			PreparedStatement ps = con.prepareStatement(eliminar);
-			ps.setString(1, ciclo.getNombre());
+			ps.setInt(1, ciclo.getId());
+			
 			ps.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -82,15 +94,16 @@ public class CicloDAO implements ICicloDAO {
 		ConexionMySQL conexion = new ConexionMySQL();
 		Connection con = conexion.creacionConexion();
 
-		String eliminar = "DELETE FROM ciclo WHERE (nombre = ?);";
+		String eliminar = "DELETE FROM ciclo WHERE (id = ?);";
 		try {
 			PreparedStatement ps = con.prepareStatement(eliminar);
 			for (Ciclo ciclo : listaCiclos) {
-				ps.setString(1, ciclo.getNombre());
-				System.out.println(ciclo.toString() + " eliminado");
+				ps.setInt(1, ciclo.getId());
 				ps.addBatch();
 			}
 			ps.executeBatch();
+			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -103,19 +116,20 @@ public class CicloDAO implements ICicloDAO {
 		ConexionMySQL conexion = new ConexionMySQL();
 		Connection con = conexion.creacionConexion();
 
-		String modificar = "UPDATE ciclo SET nombre = ?, grado = ? WHERE nombre = ?;";
+		String modificar = "UPDATE ciclo SET nombre = ?, grado = ? WHERE id = ?;";
 
 		try {
 			PreparedStatement ps = con.prepareStatement(modificar);
 			ps.setString(1, ciclo.getNombre());
 			ps.setString(2, ciclo.getGrado());
-			ps.setString(3, ciclo.getNombre());
+			ps.setInt(3, ciclo.getId());
+			
 			ps.execute();
+			
 			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println(ciclo.toString() + " modificado");
 		conexion.cerrarConexion(con);
 
 	}
@@ -125,17 +139,17 @@ public class CicloDAO implements ICicloDAO {
 		ConexionMySQL conexion = new ConexionMySQL();
 		Connection con = conexion.creacionConexion();
 
-		String modificar = "UPDATE ciclo SET nombre = ?, grado = ? WHERE nombre = ?";
+		String modificar = "UPDATE ciclo SET nombre = ?, grado = ? WHERE id = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(modificar);
 			for (Ciclo ciclo : listaCiclos) {
 				ps.setString(1, ciclo.getNombre());
 				ps.setString(2, ciclo.getGrado());
-				ps.setString(3, ciclo.getNombre());
-				System.out.println(ciclo.toString() + " modificado");
+				ps.setInt(3, ciclo.getId());
 				ps.addBatch();
 			}
 			ps.executeBatch();
+			
 			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -172,17 +186,15 @@ public class CicloDAO implements ICicloDAO {
 				ps2.setString(1, asignatura.getNombre());
 				ps2.setInt(2, asignatura.getHorasSemanales());
 				ps2.setInt(3, idCiclo);
-
 				ps2.addBatch();
 			}
 			ps2.executeBatch();
-			ResultSet rs2 = ps2.getGeneratedKeys();
 			
-			int i=0;
+			ResultSet rs2 = ps2.getGeneratedKeys();
+
+			int i = 0;
 			while (rs2.next()) {
-
 				int idAsignatura = rs2.getInt(1);
-
 				listaAsignaturas.get(i).setId(idAsignatura);
 				i++;
 			}
@@ -197,5 +209,23 @@ public class CicloDAO implements ICicloDAO {
 		}
 		conexion.cerrarConexion(con);
 
+	}
+	public void eliminarAsignaturasCiclo(Ciclo ciclo) {
+		ConexionMySQL conexion = new ConexionMySQL();
+		Connection con = conexion.creacionConexion();
+		
+		try {
+			CallableStatement st = con.prepareCall("{ call eliminarAsignaturasCiclo(?) }");
+			st.setInt(1, ciclo.getId());
+			st.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		
 	}
 }

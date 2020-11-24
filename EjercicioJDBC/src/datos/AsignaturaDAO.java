@@ -2,7 +2,9 @@ package datos;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import modelo.IAsignaturaDAO;
@@ -17,17 +19,20 @@ public class AsignaturaDAO implements IAsignaturaDAO {
 
 		String insertar = "INSERT INTO asignatura (nombre, horas, idCiclo) " + "VALUES (?,?,?);";
 		try {
-			PreparedStatement ps = con.prepareStatement(insertar);
+			PreparedStatement ps = con.prepareStatement(insertar, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, asignatura.getNombre());
 			ps.setInt(2, asignatura.getHorasSemanales());
 			ps.setInt(3, asignatura.getIdCiclo());
 			ps.execute();
-
+			
+			ResultSet rs = ps.getGeneratedKeys();
+			rs.next();
+			int id = rs.getInt(1);
+			asignatura.setId(id);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(asignatura.toString());
 		conexion.cerrarConexion(con);
 	}
 
@@ -39,18 +44,23 @@ public class AsignaturaDAO implements IAsignaturaDAO {
 		String insertar = "INSERT INTO asignatura (nombre, horas, idCiclo) " + "VALUES (?,?,?);";
 
 		try {
-			PreparedStatement ps = con.prepareStatement(insertar);
+			PreparedStatement ps = con.prepareStatement(insertar, Statement.RETURN_GENERATED_KEYS);
 			for (Asignatura asignatura : listaAsignaturas) {
 
 				ps.setString(1, asignatura.getNombre());
 				ps.setInt(2, asignatura.getHorasSemanales());
 				ps.setInt(3, asignatura.getIdCiclo());
-				System.out.println(asignatura.toString());
 				ps.addBatch();
 				
 			}
 			ps.executeBatch();
-
+			ResultSet rs = ps.getGeneratedKeys();
+			int i = 0;
+			while (rs.next()) {
+				int id = rs.getInt(1);
+				listaAsignaturas.get(i).setId(id);
+				i++;
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -64,10 +74,10 @@ public class AsignaturaDAO implements IAsignaturaDAO {
 		ConexionMySQL conexion = new ConexionMySQL();
 		Connection con = conexion.creacionConexion();
 
-		String eliminar = "DELETE FROM asignatura WHERE (nombre = ?);";
+		String eliminar = "DELETE FROM asignatura WHERE (id = ?);";
 		try {
 			PreparedStatement ps = con.prepareStatement(eliminar);
-			ps.setString(1, asignatura.getNombre());
+			ps.setInt(1, asignatura.getId());
 			ps.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -82,11 +92,11 @@ public class AsignaturaDAO implements IAsignaturaDAO {
 		ConexionMySQL conexion = new ConexionMySQL();
 		Connection con = conexion.creacionConexion();
 
-		String eliminar = "DELETE FROM asignatura WHERE (nombre = ?);";
+		String eliminar = "DELETE FROM asignatura WHERE (id = ?);";
 		try {
 			PreparedStatement ps = con.prepareStatement(eliminar);
 			for (Asignatura asignatura : listaAsignaturas) {
-				ps.setString(1, asignatura.getNombre());
+				ps.setInt(1, asignatura.getId());
 				System.out.println(asignatura.toString() + " ha sido eliminado" );
 				ps.addBatch();
 			}
@@ -103,14 +113,14 @@ public class AsignaturaDAO implements IAsignaturaDAO {
 		ConexionMySQL conexion = new ConexionMySQL();
 		Connection con = conexion.creacionConexion();
 
-		String modificar = "UPDATE asignatura SET nombre = ?, horas = ?, idCiclo = ? WHERE nombre = ?;";
+		String modificar = "UPDATE asignatura SET nombre = ?, horas = ?, idCiclo = ? WHERE id = ?;";
 
 		try {
 			PreparedStatement ps = con.prepareStatement(modificar);
 			ps.setString(1, asignatura.getNombre());
 			ps.setInt(2, asignatura.getHorasSemanales());
 			ps.setInt(3, asignatura.getIdCiclo());
-			ps.setString(4, asignatura.getNombre());
+			ps.setInt(4, asignatura.getId());
 			ps.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -125,7 +135,7 @@ public class AsignaturaDAO implements IAsignaturaDAO {
 		ConexionMySQL conexion = new ConexionMySQL();
 		Connection con = conexion.creacionConexion();
 		
-		String modificar = "UPDATE asignatura SET nombre = ?, horas = ?, idCiclo = ? WHERE nombre = ?;";
+		String modificar = "UPDATE asignatura SET nombre = ?, horas = ?, idCiclo = ? WHERE id = ?;";
 		try {
 			PreparedStatement ps = con.prepareStatement(modificar);
 			for(Asignatura asignatura : listaAsignaturas) {
@@ -134,7 +144,7 @@ public class AsignaturaDAO implements IAsignaturaDAO {
 				ps.setString(1, asignatura.getNombre());
 				ps.setInt(2, asignatura.getHorasSemanales());
 				ps.setInt(3, asignatura.getIdCiclo());
-				ps.setString(4, asignatura.getNombre());
+				ps.setInt(4, asignatura.getId());
 				System.out.println(asignatura.toString() + " ha sido modificado" );
 				ps.addBatch();
 			}
