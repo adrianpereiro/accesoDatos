@@ -62,33 +62,40 @@ public class Programa {
 		listaAsignatura.add(asig2);
 		AsignaturaDAO proc = new AsignaturaDAO();
 		
+		//insertar
 		proc.insertar(asig);
 		System.out.println(asig + " añadido");
-
+		
+		//eliminar
 		proc.eliminar(asig);
 		System.out.println(asig + " eliminado");
 		
+		//insertar varias
 		proc.insertarMultiple(listaAsignatura);
 		for(Asignatura asignatura : listaAsignatura) {
 			System.out.println(asignatura + " añadido");
 		}
 		
+		//eliminar varias 
 		proc.eliminarMultiple(listaAsignatura);
 		for(Asignatura asignatura : listaAsignatura) {
 		System.out.println(asignatura + " eliminado");
 		}
 		
+		//modificar
 		Asignatura asig3 = new Asignatura("Acceso a datos", 180, 7);
 		proc.modificar(asig3);
 		System.out.println(asig + " modificado");
 		
 		//------------------------------Ciclos y asignaturas------------------------------
+		//Crear un ciclo con varias asignaturas 
 		procCiclo.crearCicloAsignaturas(ciclo1, listaAsignatura);
 		System.out.println(ciclo1);
 		for(Asignatura a:listaAsignatura) {
 			System.out.println(a);
 		}
 		
+		//elminar un ciclo y todas sus asignaturas
 		ciclo1 = new Ciclo(101,"prueba", "medio");
 		procCiclo.eliminarAsignaturasCiclo(ciclo1);
 	}
