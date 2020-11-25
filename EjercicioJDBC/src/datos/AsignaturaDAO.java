@@ -24,7 +24,7 @@ public class AsignaturaDAO implements IAsignaturaDAO {
 			ps.setInt(2, asignatura.getHorasSemanales());
 			ps.setInt(3, asignatura.getIdCiclo());
 			ps.execute();
-			
+
 			ResultSet rs = ps.getGeneratedKeys();
 			rs.next();
 			int id = rs.getInt(1);
@@ -51,7 +51,7 @@ public class AsignaturaDAO implements IAsignaturaDAO {
 				ps.setInt(2, asignatura.getHorasSemanales());
 				ps.setInt(3, asignatura.getIdCiclo());
 				ps.addBatch();
-				
+
 			}
 			ps.executeBatch();
 			ResultSet rs = ps.getGeneratedKeys();
@@ -83,7 +83,6 @@ public class AsignaturaDAO implements IAsignaturaDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(asignatura.toString() + " ha sido eliminado" );
 		conexion.cerrarConexion(con);
 	}
 
@@ -97,7 +96,6 @@ public class AsignaturaDAO implements IAsignaturaDAO {
 			PreparedStatement ps = con.prepareStatement(eliminar);
 			for (Asignatura asignatura : listaAsignaturas) {
 				ps.setInt(1, asignatura.getId());
-				System.out.println(asignatura.toString() + " ha sido eliminado" );
 				ps.addBatch();
 			}
 			ps.executeBatch();
@@ -126,7 +124,6 @@ public class AsignaturaDAO implements IAsignaturaDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(asignatura.toString() + " ha sido modificado" );
 		conexion.cerrarConexion(con);
 	}
 
@@ -134,18 +131,16 @@ public class AsignaturaDAO implements IAsignaturaDAO {
 	public void modificarMultiple(ArrayList<Asignatura> listaAsignaturas) {
 		ConexionMySQL conexion = new ConexionMySQL();
 		Connection con = conexion.creacionConexion();
-		
+
 		String modificar = "UPDATE asignatura SET nombre = ?, horas = ?, idCiclo = ? WHERE id = ?;";
 		try {
 			PreparedStatement ps = con.prepareStatement(modificar);
-			for(Asignatura asignatura : listaAsignaturas) {
-			
-				
+			for (Asignatura asignatura : listaAsignaturas) {
+
 				ps.setString(1, asignatura.getNombre());
 				ps.setInt(2, asignatura.getHorasSemanales());
 				ps.setInt(3, asignatura.getIdCiclo());
 				ps.setInt(4, asignatura.getId());
-				System.out.println(asignatura.toString() + " ha sido modificado" );
 				ps.addBatch();
 			}
 			ps.executeBatch();
@@ -153,7 +148,7 @@ public class AsignaturaDAO implements IAsignaturaDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		conexion.cerrarConexion(con);
 	}
 }
