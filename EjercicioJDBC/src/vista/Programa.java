@@ -10,6 +10,7 @@ import modelo.Entidades.Ciclo;
 public class Programa {
 
 	public static void main(String[] args) {
+		//Las clases VO estan creadas pero no las use para probar
 		//------------------------------Ciclos------------------------------
 		Ciclo ciclo1 = new Ciclo("DAM", "medio");
 		Ciclo ciclo2 = new Ciclo("DAW", "Medio");

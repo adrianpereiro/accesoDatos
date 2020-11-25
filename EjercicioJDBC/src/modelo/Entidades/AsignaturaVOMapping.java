@@ -18,4 +18,18 @@ public class AsignaturaVOMapping {
 		}
 		return listaAsignaturasVO;
 	}
+	
+	public Asignatura crearAsignatura(AsignaturaVO asignaturaVO) {
+		Asignatura asignatura = new Asignatura(0, asignaturaVO.getNombre(), asignaturaVO.getHorasSemanales(), asignaturaVO.getIdCiclo());
+		return asignatura;
+	}
+	
+	public ArrayList<Asignatura> crearListaAsignaturas(ArrayList<AsignaturaVO> listaAsignaturasVO){
+		ArrayList<Asignatura> listaAsignaturas = new ArrayList<>();
+		for(AsignaturaVO asignaturaVO : listaAsignaturasVO) {
+			Asignatura asignatura = new Asignatura(0, asignaturaVO.getNombre(), asignaturaVO.getHorasSemanales(), asignaturaVO.getIdCiclo());
+			listaAsignaturas.add(asignatura);
+		}
+		return listaAsignaturas;
+	}
 }

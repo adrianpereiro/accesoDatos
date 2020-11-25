@@ -1,7 +1,6 @@
 package vista.Presentacion;
 
 public class AsignaturaVO {
-	private int id;
 	private String nombre;
 	private int horasSemanales;
 	private int idCiclo;
@@ -10,14 +9,6 @@ public class AsignaturaVO {
 		this.nombre = nombre;
 		this.horasSemanales = horasSemanales;
 		this.idCiclo = idCiclo;
-	}
-	
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getNombre() {
@@ -46,7 +37,7 @@ public class AsignaturaVO {
 
 	@Override
 	public String toString() {
-		return "AsignaturaVO [id=" + id + ", nombre=" + nombre + ", horasSemanales=" + horasSemanales + ", idCiclo="
+		return "AsignaturaVO [nombre=" + nombre + ", horasSemanales=" + horasSemanales + ", idCiclo="
 				+ idCiclo + "]";
 	}
 }
