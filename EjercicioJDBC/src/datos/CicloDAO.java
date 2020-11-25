@@ -210,6 +210,7 @@ public class CicloDAO implements ICicloDAO {
 		conexion.cerrarConexion(con);
 
 	}
+	
 	public void eliminarAsignaturasCiclo(Ciclo ciclo) {
 		ConexionMySQL conexion = new ConexionMySQL();
 		Connection con = conexion.creacionConexion();
@@ -222,10 +223,6 @@ public class CicloDAO implements ICicloDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		
-		
-		
 	}
+	
 }
