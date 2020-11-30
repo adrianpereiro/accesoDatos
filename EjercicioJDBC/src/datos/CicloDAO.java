@@ -220,7 +220,6 @@ public class CicloDAO implements ICicloDAO {
 			st.setInt(1, ciclo.getId());
 			st.execute();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

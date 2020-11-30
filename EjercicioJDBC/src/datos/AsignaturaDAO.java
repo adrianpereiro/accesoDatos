@@ -30,7 +30,6 @@ public class AsignaturaDAO implements IAsignaturaDAO {
 			int id = rs.getInt(1);
 			asignatura.setId(id);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		conexion.cerrarConexion(con);
@@ -62,7 +61,6 @@ public class AsignaturaDAO implements IAsignaturaDAO {
 				i++;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -80,7 +78,6 @@ public class AsignaturaDAO implements IAsignaturaDAO {
 			ps.setInt(1, asignatura.getId());
 			ps.execute();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		conexion.cerrarConexion(con);
@@ -100,7 +97,6 @@ public class AsignaturaDAO implements IAsignaturaDAO {
 			}
 			ps.executeBatch();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		conexion.cerrarConexion(con);
@@ -121,7 +117,6 @@ public class AsignaturaDAO implements IAsignaturaDAO {
 			ps.setInt(4, asignatura.getId());
 			ps.execute();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		conexion.cerrarConexion(con);
@@ -145,10 +140,8 @@ public class AsignaturaDAO implements IAsignaturaDAO {
 			}
 			ps.executeBatch();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		conexion.cerrarConexion(con);
 	}
 }
