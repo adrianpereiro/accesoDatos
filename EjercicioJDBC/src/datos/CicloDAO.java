@@ -217,7 +217,7 @@ public class CicloDAO implements ICicloDAO {
 		
 		try {
 			CallableStatement st = con.prepareCall("{ call eliminarAsignaturasCiclo(?) }");
-			st.setInt(1, ciclo.getId());
+			st.setString(1, ciclo.getNombre());
 			st.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
