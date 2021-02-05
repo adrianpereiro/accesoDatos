@@ -10,6 +10,7 @@ public class ConexionMySQL implements IConexion {
 	public Connection creacionConexion() {
 		CargarDriver();
 		String url="jdbc:mysql://localhost:3306/ejerciciojdbc";
+		//String url="jdbc:mysql://localhost:3306/ejemplohibernate";
 		String usuario="root";
 		String pass="";
 		Connection c = null;

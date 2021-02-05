@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 2 feb. 2021 13:38:13 by Hibernate Tools 5.2.12.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="ejercicioorm" dynamic-insert="false" dynamic-update="false" mutable="true" name="Libro" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="libro">
+        <id name="codLibro" type="string">
+            <column length="10" name="codLibro"/>
+            <generator class="assigned"/>
+        </id>
+        <property generated="never" lazy="false" name="titulo" optimistic-lock="true" type="string" unique="false">
+            <column length="100" name="Titulo" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="editorial" optimistic-lock="true" type="string" unique="false">
+            <column length="45" name="Editorial" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="precio" optimistic-lock="true" type="float" unique="false">
+            <column name="Precio" not-null="true" precision="12" scale="0"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="ejemplars" optimistic-lock="true" sort="unsorted" table="ejemplar">
+            <key on-delete="noaction">
+                <column length="10" name="codLibro" not-null="true"/>
+            </key>
+            <one-to-many class="Ejemplar" embed-xml="true" not-found="exception"/>
+        </set>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="autors" optimistic-lock="true" sort="unsorted" table="autorlibro">
+            <key on-delete="noaction">
+                <column length="10" name="codLibro" not-null="true"/>
+            </key>
+            <many-to-many embed-xml="true" entity-name="Autor" not-found="exception" unique="false">
+                <column name="idAutor" not-null="true"/>
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

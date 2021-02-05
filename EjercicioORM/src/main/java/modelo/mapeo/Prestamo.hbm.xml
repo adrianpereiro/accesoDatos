@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 2 feb. 2021 13:38:13 by Hibernate Tools 5.2.12.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="ejercicioorm" dynamic-insert="false" dynamic-update="false" mutable="true" name="Prestamo" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="prestamo">
+        <id name="idPrestamo" type="java.lang.Integer">
+            <column name="idPrestamo"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="Ejemplar" embed-xml="true" fetch="select" insert="true" name="ejemplar" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="idEjemplar" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="Usuario" embed-xml="true" fetch="select" insert="true" name="usuario" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="idUsuario" not-null="true"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="fechaPrestamo" optimistic-lock="true" type="date" unique="false">
+            <column length="10" name="FechaPrestamo" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="fechaDevolucion" optimistic-lock="true" type="date" unique="false">
+            <column length="10" name="FechaDevolucion" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>
