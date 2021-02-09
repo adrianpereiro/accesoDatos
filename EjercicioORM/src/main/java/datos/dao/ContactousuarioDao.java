@@ -35,4 +35,13 @@ public class ContactousuarioDao {
 		tx.commit();
 		sesion.close();
 	}
+	
+	public Contactousuario buscar(int id) {
+		SessionFactory sf = UtilHibernate.getSessionFactory();
+		Session sesion = sf.openSession();
+		Contactousuario contacto = (Contactousuario)sesion.get(Contactousuario.class, id);
+		sesion.close();
+		return contacto;
+		
+	}
 }

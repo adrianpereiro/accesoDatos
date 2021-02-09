@@ -5,6 +5,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import datos.configuracion.UtilHibernate;
+import modelo.entidades.Contactousuario;
 import modelo.entidades.Libro;
 
 public class LibroDao {
@@ -34,5 +35,13 @@ public class LibroDao {
 		sesion.saveOrUpdate(l);
 		tx.commit();
 		sesion.close();
+	}
+	
+	public Libro buscar(int codLibro) {
+		SessionFactory sf = UtilHibernate.getSessionFactory();
+		Session sesion = sf.openSession();
+		Libro l = (Libro)sesion.get(Libro.class, codLibro);
+		sesion.close();
+		return l;
 	}
 }

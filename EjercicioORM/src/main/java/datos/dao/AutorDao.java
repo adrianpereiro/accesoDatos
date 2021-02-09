@@ -35,4 +35,13 @@ public class AutorDao {
 		tx.commit();
 		sesion.close();
 	}
+	
+	public Autor buscar(int id) {
+		SessionFactory sf = UtilHibernate.getSessionFactory();
+		Session sesion = sf.openSession();
+		Autor aut = (Autor)sesion.get(Autor.class, id);
+		sesion.close();
+		return aut;
+	}
+	
 }

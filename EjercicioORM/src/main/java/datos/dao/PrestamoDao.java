@@ -35,4 +35,12 @@ public class PrestamoDao {
 		tx.commit();
 		sesion.close();
 	}
+	
+	public Prestamo buscar(int id) {
+		SessionFactory sf = UtilHibernate.getSessionFactory();
+		Session sesion = sf.openSession();
+		Prestamo p = (Prestamo)sesion.get(Prestamo.class, id);
+		sesion.close();
+		return p;
+	}
 }

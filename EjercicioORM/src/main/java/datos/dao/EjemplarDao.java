@@ -35,4 +35,12 @@ public class EjemplarDao {
 		tx.commit();
 		sesion.close();
 	}
+	
+	public Ejemplar buscar(int id) {
+		SessionFactory sf = UtilHibernate.getSessionFactory();
+		Session sesion = sf.openSession();
+		Ejemplar e = (Ejemplar)sesion.get(Ejemplar.class, id);
+		sesion.close();
+		return e;
+	}
 }
