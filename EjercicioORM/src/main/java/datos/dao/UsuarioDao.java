@@ -30,6 +30,7 @@ public class UsuarioDao {
 		SessionFactory sf = UtilHibernate.getSessionFactory();
 		Session sesion = sf.openSession();
 		Transaction tx = sesion.beginTransaction();
+		//Usuario usuario2 = (Usuario)sesion.get(Usuario.class, usuario.getIdUsuario());
 		sesion.saveOrUpdate(usuario);
 		tx.commit();
 		sesion.close();
