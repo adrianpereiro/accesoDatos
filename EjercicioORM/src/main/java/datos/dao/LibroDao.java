@@ -17,11 +17,11 @@ public class LibroDao {
 		sesion.close();
 	}
 	
-	public void eliminar(int id) {
+	public void eliminar(int codLibro) {
 		SessionFactory sf = UtilHibernate.getSessionFactory();
 		Session sesion = sf.openSession();
 		Transaction tx = sesion.beginTransaction();
-		Libro l = (Libro)sesion.get(Libro.class, id);
+		Libro l = (Libro)sesion.get(Libro.class, codLibro);
 		sesion.delete(l);
 		tx.commit();
 		sesion.close();
