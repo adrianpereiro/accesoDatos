@@ -2,6 +2,7 @@ package modelo.entidades;
 // default package
 // Generated 2 feb. 2021 13:38:13 by Hibernate Tools 5.2.12.Final
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;

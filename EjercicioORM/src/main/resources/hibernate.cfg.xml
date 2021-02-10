@@ -2,16 +2,19 @@
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
                                          "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
- <session-factory name="">
+ <session-factory>
   <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
   <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/ejercicioorm</property>
   <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
   <property name="hibernate.connection.username">root</property>
-  <mapping resource="modelo/entidades/mapeo/Autor.hbm.xml"/>
-  <mapping resource="modelo/entidades/mapeo/Contactousuario.hbm.xml"/>
-  <mapping resource="modelo/entidades/mapeo/Ejemplar.hbm.xml"/>
-  <mapping resource="modelo/entidades/mapeo/Libro.hbm.xml"/>
-  <mapping resource="modelo/entidades/mapeo/Prestamo.hbm.xml"/>
-  <mapping resource="modelo/entidades/mapeo/Usuario.hbm.xml"/>
+<!--   <mapping resource="modelo/mapeo/Autor.hbm.xml"/>
+  <mapping resource="modelo/mapeo/Contactousuario.hbm.xml"/>
+    
+
+  <mapping resource="modelo/mapeo/Libro.hbm.xml"/>
+  <mapping resource="modelo/mapeo/Ejemplar.hbm.xml"/>
+
+  <mapping resource="modelo/mapeo/Prestamo.hbm.xml"/>   -->
+  <mapping resource="modelo/mapeo/Usuario.hbm.xml"/> 
  </session-factory>
 </hibernate-configuration>
