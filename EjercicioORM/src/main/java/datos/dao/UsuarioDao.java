@@ -2,18 +2,21 @@ package datos.dao;
 
 import org.hibernate.*;
 
-
+import datos.configuracion.Conexion;
 import datos.configuracion.UtilHibernate;
 import modelo.entidades.Usuario;
 
 public class UsuarioDao {
 	public void insertar(Usuario usuario) {
-		SessionFactory sf = UtilHibernate.getSessionFactory();
-		Session sesion = sf.openSession();
+		try(Session sesion = Conexion.obtenerSesion()){
 		Transaction tx = sesion.beginTransaction();
 		sesion.saveOrUpdate(usuario);
 		tx.commit();
 		sesion.close();
+		}catch() {
+			
+		}
+		
 	}
 	
 	public void eliminar(int id) {
