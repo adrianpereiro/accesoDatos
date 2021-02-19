@@ -76,7 +76,7 @@ public class Libro implements java.io.Serializable {
 		this.ejemplars = ejemplars;
 	}
 
-	public Set getAutors() {
+	public Set<Libro> getAutors() {
 		return this.autors;
 	}
 

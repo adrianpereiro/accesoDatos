@@ -1,47 +1,58 @@
 package datos.dao;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import datos.configuracion.UtilHibernate;
+import datos.configuracion.Conexion;
 import modelo.entidades.Autor;
 
 public class AutorDao {
+	Transaction t = null;
+
 	public void insertar(Autor aut) {
-		SessionFactory sf = UtilHibernate.getSessionFactory();
-		Session sesion = sf.openSession();
-		Transaction tx = sesion.beginTransaction();
-		sesion.saveOrUpdate(aut);
-		tx.commit();
-		sesion.close();
+		try (Session sesion = Conexion.obtenerSesion()) {
+			t = sesion.beginTransaction();
+			sesion.saveOrUpdate(aut);
+			t.commit();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			if (t != null) {t.rollback();}
+		}
 	}
-	
+
 	public void eliminar(int id) {
-		SessionFactory sf = UtilHibernate.getSessionFactory();
-		Session sesion = sf.openSession();
-		Transaction tx = sesion.beginTransaction();
-		Autor aut = (Autor)sesion.get(Autor.class, id);
-		sesion.delete(aut);
-		tx.commit();
-		sesion.close();
+		Transaction t = null;
+		try (Session sesion = Conexion.obtenerSesion()) {
+			t = sesion.beginTransaction();
+			Autor aut = (Autor) sesion.get(Autor.class, id);
+			sesion.delete(aut);
+			t.commit();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			if (t != null) {t.rollback();}
+		}
 	}
-	
+
 	public void modificar(Autor aut) {
-		SessionFactory sf = UtilHibernate.getSessionFactory();
-		Session sesion = sf.openSession();
-		Transaction tx = sesion.beginTransaction();
-		sesion.saveOrUpdate(aut);
-		tx.commit();
-		sesion.close();
+		try (Session sesion = Conexion.obtenerSesion()) {
+			Transaction t = sesion.beginTransaction();
+			Autor a2 =(Autor)sesion.get(Autor.class, aut.getIdAutor());
+			a2.setNombre(aut.getNombre());
+			a2.setApellidos(aut.getApellidos());
+			a2.setLibros(aut.getLibros());
+			sesion.saveOrUpdate(a2);
+			t.commit();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			if (t != null) {t.rollback();}
+		}
 	}
-	
+
 	public Autor buscar(int id) {
-		SessionFactory sf = UtilHibernate.getSessionFactory();
-		Session sesion = sf.openSession();
-		Autor aut = (Autor)sesion.get(Autor.class, id);
+		Session sesion = Conexion.obtenerSesion();
+		Autor aut = (Autor) sesion.get(Autor.class, id);
 		sesion.close();
 		return aut;
 	}
-	
+
 }

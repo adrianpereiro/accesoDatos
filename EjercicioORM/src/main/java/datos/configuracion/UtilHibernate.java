@@ -8,13 +8,13 @@ public class UtilHibernate {
 
 	static {
 		try {
-		sessionFactory = new Configuration().configure().buildSessionFactory();
-		}catch(Throwable ex) {
+			sessionFactory = new Configuration().configure().buildSessionFactory();
+		} catch (Throwable ex) {
 			System.err.println("Error al establecer la configuracion de hibernate." + ex);
 			throw new ExceptionInInitializerError(ex);
 		}
 	}
-	
+
 	public static SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
