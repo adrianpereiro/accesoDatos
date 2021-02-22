@@ -6,10 +6,10 @@
             <column name="idPrestamo"/>
             <generator class="identity"/>
         </id>
-        <many-to-one class="Ejemplar" embed-xml="true" fetch="select" insert="true" name="ejemplar" not-found="exception" optimistic-lock="true" unique="false" update="true">
+        <many-to-one class="modelo.entidades.Ejemplar" embed-xml="true" fetch="select" insert="true" name="ejemplar" not-found="exception" optimistic-lock="true" unique="false" update="true">
             <column name="idEjemplar" not-null="true"/>
         </many-to-one>
-        <many-to-one class="Usuario" embed-xml="true" fetch="select" insert="true" name="usuario" not-found="exception" optimistic-lock="true" unique="false" update="true">
+        <many-to-one class="modelo.entidades.Usuario" embed-xml="true" fetch="select" insert="true" name="usuario" not-found="exception" optimistic-lock="true" unique="false" update="true">
             <column name="idUsuario" not-null="true"/>
         </many-to-one>
         <property generated="never" lazy="false" name="fechaPrestamo" optimistic-lock="true" type="date" unique="false">

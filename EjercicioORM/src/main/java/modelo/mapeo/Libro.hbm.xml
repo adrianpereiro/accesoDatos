@@ -15,19 +15,18 @@
         <property generated="never" lazy="false" name="precio" optimistic-lock="true" type="float" unique="false">
             <column name="Precio" not-null="true" precision="12" scale="0"/>
         </property>
-        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="ejemplars" optimistic-lock="true" sort="unsorted" table="ejemplar">
+          <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="ejemplars" optimistic-lock="true" sort="unsorted" table="ejemplar">
             <key on-delete="noaction">
                 <column length="10" name="codLibro" not-null="true"/>
             </key>
-            <one-to-many class="Ejemplar" embed-xml="true" not-found="exception"/>
-        </set>
-        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="autors" optimistic-lock="true" sort="unsorted" table="autorlibro">
-            <key on-delete="noaction">
-                <column length="10" name="codLibro" not-null="true"/>
+            <one-to-many class="modelo.entidades.Ejemplar" embed-xml="true" not-found="exception"/>
+        </set> 
+         <set fetch="select" inverse="true" lazy="true" name="autors" sort="unsorted" table="autorlibro">
+            <key>
+                <column  name="codLibro" />
             </key>
-            <many-to-many embed-xml="true" entity-name="Autor" not-found="exception" unique="false">
-                <column name="idAutor" not-null="true"/>
+            <many-to-many class="modelo.entidades.Autor" column ="idAutor" not-found="exception">
             </many-to-many>
-        </set>
+        </set>   
     </class>
 </hibernate-mapping>

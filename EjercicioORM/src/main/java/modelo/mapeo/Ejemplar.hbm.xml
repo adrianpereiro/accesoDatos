@@ -6,7 +6,7 @@
             <column name="idEjemplar"/>
             <generator class="assigned"/>
         </id>
-        <many-to-one class="Libro" embed-xml="true" fetch="select" insert="true" name="libro" not-found="exception" optimistic-lock="true" unique="false" update="true">
+        <many-to-one class="modelo.entidades.Libro" embed-xml="true" fetch="select" insert="true" name="libro" not-found="exception" optimistic-lock="true" unique="false" update="true">
             <column length="10" name="codLibro" not-null="true"/>
         </many-to-one>
         <property generated="never" lazy="false" name="numEjemplar" optimistic-lock="true" type="int" unique="false">
@@ -19,7 +19,7 @@
             <key on-delete="noaction">
                 <column name="idEjemplar" not-null="true"/>
             </key>
-            <one-to-many class="Prestamo" embed-xml="true" not-found="exception"/>
+            <one-to-many class="modelo.entidades.Prestamo" embed-xml="true" not-found="exception"/>
         </set>
     </class>
 </hibernate-mapping>

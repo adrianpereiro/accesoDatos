@@ -14,8 +14,8 @@ public class Libro implements java.io.Serializable {
 	private String titulo;
 	private String editorial;
 	private float precio;
-	private Set ejemplars = new HashSet(0);
-	private Set autors = new HashSet(0);
+	private Set<Ejemplar> ejemplars = new HashSet(0);
+	private Set<Autor> autors = new HashSet(0);
 
 	public Libro() {
 	}
@@ -27,7 +27,7 @@ public class Libro implements java.io.Serializable {
 		this.precio = precio;
 	}
 
-	public Libro(String codLibro, String titulo, String editorial, float precio, Set ejemplars, Set autors) {
+	public Libro(String codLibro, String titulo, String editorial, float precio, Set<Ejemplar> ejemplars, Set<Autor> autors) {
 		this.codLibro = codLibro;
 		this.titulo = titulo;
 		this.editorial = editorial;
@@ -72,15 +72,15 @@ public class Libro implements java.io.Serializable {
 		return this.ejemplars;
 	}
 
-	public void setEjemplars(Set ejemplars) {
+	public void setEjemplars(Set<Ejemplar> ejemplars) {
 		this.ejemplars = ejemplars;
 	}
 
-	public Set<Libro> getAutors() {
+	public Set<Autor> getAutors() {
 		return this.autors;
 	}
 
-	public void setAutors(Set autors) {
+	public void setAutors(Set<Autor> autors) {
 		this.autors = autors;
 	}
 

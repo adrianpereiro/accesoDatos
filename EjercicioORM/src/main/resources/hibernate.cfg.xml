@@ -7,14 +7,12 @@
   <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/ejercicioorm</property>
   <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
   <property name="hibernate.connection.username">root</property>
-<!--   <mapping resource="modelo/mapeo/Autor.hbm.xml"/>
-  <mapping resource="modelo/mapeo/Contactousuario.hbm.xml"/>
     
-
+<mapping resource="modelo/mapeo/Autor.hbm.xml"/>
   <mapping resource="modelo/mapeo/Libro.hbm.xml"/>
   <mapping resource="modelo/mapeo/Ejemplar.hbm.xml"/>
-
-  <mapping resource="modelo/mapeo/Prestamo.hbm.xml"/>   -->
+	<mapping resource="modelo/mapeo/Contactousuario.hbm.xml"/>
+  <mapping resource="modelo/mapeo/Prestamo.hbm.xml"/>   
   <mapping resource="modelo/mapeo/Usuario.hbm.xml"/> 
  </session-factory>
 </hibernate-configuration>

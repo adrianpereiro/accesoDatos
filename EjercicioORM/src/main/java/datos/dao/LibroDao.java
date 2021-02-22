@@ -19,7 +19,7 @@ public class LibroDao {
 		}
 	}
 
-	public void eliminar(int codLibro) {
+	public void eliminar(String codLibro) {
 		Transaction t = null;
 		try (Session sesion = Conexion.obtenerSesion()) {
 			t = sesion.beginTransaction();
