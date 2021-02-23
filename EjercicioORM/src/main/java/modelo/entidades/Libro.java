@@ -10,12 +10,16 @@ import java.util.Set;
  */
 public class Libro implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String codLibro;
 	private String titulo;
 	private String editorial;
 	private float precio;
-	private Set<Ejemplar> ejemplars = new HashSet(0);
-	private Set<Autor> autors = new HashSet(0);
+	private Set<Ejemplar> ejemplars = new HashSet<Ejemplar>(0);
+	private Set<Autor> autors = new HashSet<Autor>(0);
 
 	public Libro() {
 	}
@@ -68,7 +72,7 @@ public class Libro implements java.io.Serializable {
 		this.precio = precio;
 	}
 
-	public Set getEjemplars() {
+	public Set<Ejemplar> getEjemplars() {
 		return this.ejemplars;
 	}
 
@@ -82,6 +86,12 @@ public class Libro implements java.io.Serializable {
 
 	public void setAutors(Set<Autor> autors) {
 		this.autors = autors;
+	}
+
+	@Override
+	public String toString() {
+		return "Libro [codLibro=" + codLibro + ", titulo=" + titulo + ", editorial=" + editorial + ", precio=" + precio
+				+ ", ejemplars=" + ejemplars + ", autors=" + autors + "]";
 	}
 
 }

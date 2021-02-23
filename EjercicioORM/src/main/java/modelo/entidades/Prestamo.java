@@ -9,6 +9,10 @@ import java.util.Date;
  */
 public class Prestamo implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer idPrestamo;
 	private Ejemplar ejemplar;
 	private Usuario usuario;

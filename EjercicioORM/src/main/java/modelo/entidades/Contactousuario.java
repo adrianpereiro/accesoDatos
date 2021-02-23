@@ -7,6 +7,10 @@ package modelo.entidades;
  */
 public class Contactousuario implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1147800994260354680L;
 	private int idUsuario;
 	private Usuario usuario;
 	private String email;
@@ -67,5 +71,13 @@ public class Contactousuario implements java.io.Serializable {
 	public void setTelefonoFijo(String telefonoFijo) {
 		this.telefonoFijo = telefonoFijo;
 	}
+
+	@Override
+	public String toString() {
+		return "Contactousuario [idUsuario=" + idUsuario + ", email=" + email
+				+ ", telefonoMovil=" + telefonoMovil + ", telefonoFijo=" + telefonoFijo + "]";
+	}
+
+
 
 }

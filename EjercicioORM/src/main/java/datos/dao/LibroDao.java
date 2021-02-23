@@ -1,10 +1,19 @@
 package datos.dao;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Scanner;
+import java.util.Set;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import datos.configuracion.Conexion;
+import modelo.entidades.Autor;
 import modelo.entidades.Libro;
+import modelo.entidades.Prestamo;
 
 public class LibroDao {
 	public void insertar(Libro l) {
@@ -15,7 +24,9 @@ public class LibroDao {
 			t.commit();
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			if (t != null) {t.rollback();}
+			if (t != null) {
+				t.rollback();
+			}
 		}
 	}
 
@@ -28,7 +39,9 @@ public class LibroDao {
 			t.commit();
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			if (t != null) {t.rollback();}
+			if (t != null) {
+				t.rollback();
+			}
 		}
 	}
 
@@ -36,7 +49,7 @@ public class LibroDao {
 		Transaction t = null;
 		try (Session sesion = Conexion.obtenerSesion()) {
 			t = sesion.beginTransaction();
-			Libro l2 = (Libro)sesion.get(Libro.class, l.getCodLibro());
+			Libro l2 = (Libro) sesion.get(Libro.class, l.getCodLibro());
 			l2.setAutors(l.getAutors());
 			l2.setEditorial(l.getEditorial());
 			l2.setEjemplars(l.getEjemplars());
@@ -46,7 +59,9 @@ public class LibroDao {
 			t.commit();
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			if (t != null) {t.rollback();}
+			if (t != null) {
+				t.rollback();
+			}
 		}
 	}
 
@@ -56,4 +71,95 @@ public class LibroDao {
 		sesion.close();
 		return l;
 	}
+
+	@SuppressWarnings("deprecation")
+	public void librosPrestados() {
+		try (Session sesion = Conexion.obtenerSesion()) {
+			Scanner sc = new Scanner(System.in);
+			System.out.println("Indica dos fechas: \nFecha 1: \n");
+			String Sfecha1 = sc.nextLine();
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			Date fecha = sdf.parse(Sfecha1);
+			System.out.println("Fecha 2: \n");
+			String Sfecha2 = sc.nextLine();
+			Date fecha2 = sdf.parse(Sfecha2);
+
+			if (fecha.after(fecha2)) {
+				Date aux = fecha2;
+				fecha2 = fecha;
+				fecha = aux;
+			}
+			
+			Query<Prestamo> q = sesion.createQuery("FROM Prestamo p WHERE p.fechaPrestamo between :fecha and :fecha2");
+			
+			q.setDate("fecha", fecha);
+			q.setDate("fecha2", fecha2);
+
+			List<Prestamo> listaPrestamos = (List<Prestamo>) q.getResultList();
+
+			for (Prestamo p : listaPrestamos) {
+				Libro l = p.getEjemplar().getLibro();
+				System.out.println(l + "\n");
+			}
+			sc.close();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	@SuppressWarnings("deprecation")
+	public void autorLibro() {
+		try (Session sesion = Conexion.obtenerSesion()) {
+			Scanner sc = new Scanner(System.in);
+			System.out.println("Indica el nombre del autor");
+			String nombre = sc.nextLine();
+			
+			Query<Autor> q = sesion.createQuery("FROM Autor WHERE nombre like :nombreAutor");
+			q.setParameter("nombreAutor", nombre);
+			
+			List<Autor> listaAutores = (List<Autor>) q.getResultList();
+			
+			for(Autor a : listaAutores) {
+				Set<Libro> listaLibros = a.getLibros();
+				for(Libro l : listaLibros) {
+					System.out.println(l + "\n");
+				}
+			}
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	public void precioLibro() {
+		try(Session sesion = Conexion.obtenerSesion()){
+			Query<Libro> q = sesion.createQuery("FROM Libro WHERE precio is null OR precio<20");
+			List<Libro> listaLibros = (List<Libro>) q.getResultList();
+			
+			for(Libro l : listaLibros) {
+				System.out.println(l + "\n");
+			}
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
 }

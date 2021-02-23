@@ -15,7 +15,7 @@
         <property generated="never" lazy="false" name="precio" optimistic-lock="true" type="float" unique="false">
             <column name="Precio" not-null="true" precision="12" scale="0"/>
         </property>
-          <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="ejemplars" optimistic-lock="true" sort="unsorted" table="ejemplar">
+          <set fetch="select" inverse="true" lazy="true" mutable="true" name="ejemplars" optimistic-lock="true" sort="unsorted" table="ejemplar">
             <key on-delete="noaction">
                 <column length="10" name="codLibro" not-null="true"/>
             </key>

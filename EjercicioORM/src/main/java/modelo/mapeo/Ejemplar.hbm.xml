@@ -15,7 +15,7 @@
         <property generated="never" lazy="false" name="estado" optimistic-lock="true" type="string" unique="false">
             <column length="25" name="Estado" not-null="true"/>
         </property>
-        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="prestamos" optimistic-lock="true" sort="unsorted" table="prestamo">
+        <set fetch="select" inverse="true" lazy="true" mutable="true" name="prestamos" optimistic-lock="true" sort="unsorted" table="prestamo">
             <key on-delete="noaction">
                 <column name="idEjemplar" not-null="true"/>
             </key>

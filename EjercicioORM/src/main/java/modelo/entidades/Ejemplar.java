@@ -10,11 +10,15 @@ import java.util.Set;
  */
 public class Ejemplar implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int idEjemplar;
 	private Libro libro;
 	private int numEjemplar;
 	private String estado;
-	private Set prestamos = new HashSet(0);
+	private Set<Prestamo> prestamos = new HashSet<Prestamo>(0);
 
 	public Ejemplar() {
 	}
@@ -26,7 +30,7 @@ public class Ejemplar implements java.io.Serializable {
 		this.estado = estado;
 	}
 
-	public Ejemplar(int idEjemplar, Libro libro, int numEjemplar, String estado, Set prestamos) {
+	public Ejemplar(int idEjemplar, Libro libro, int numEjemplar, String estado, Set<Prestamo> prestamos) {
 		this.idEjemplar = idEjemplar;
 		this.libro = libro;
 		this.numEjemplar = numEjemplar;
@@ -66,12 +70,17 @@ public class Ejemplar implements java.io.Serializable {
 		this.estado = estado;
 	}
 
-	public Set getPrestamos() {
+	public Set<Prestamo> getPrestamos() {
 		return this.prestamos;
 	}
 
-	public void setPrestamos(Set prestamos) {
+	public void setPrestamos(Set<Prestamo> prestamos) {
 		this.prestamos = prestamos;
 	}
 
+	@Override
+	public String toString() {
+		return "Ejemplar [idEjemplar=" + idEjemplar + ", numEjemplar=" + numEjemplar + ", estado=" + estado + "]";
+	}
+	
 }

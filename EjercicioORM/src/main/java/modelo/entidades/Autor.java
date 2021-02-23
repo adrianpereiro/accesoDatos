@@ -10,10 +10,14 @@ import java.util.Set;
  */
 public class Autor implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int idAutor;
 	private String nombre;
 	private String apellidos;
-	private Set libros = new HashSet(0);
+	private Set<Libro> libros = new HashSet<Libro>(0);
 
 	public Autor() {
 	}
@@ -22,7 +26,7 @@ public class Autor implements java.io.Serializable {
 		this.idAutor = idAutor;
 	}
 
-	public Autor(int idAutor, String nombre, String apellidos, Set libros) {
+	public Autor(int idAutor, String nombre, String apellidos, Set<Libro> libros) {
 		this.idAutor = idAutor;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
@@ -53,12 +57,17 @@ public class Autor implements java.io.Serializable {
 		this.apellidos = apellidos;
 	}
 
-	public Set getLibros() {
+	public Set<Libro> getLibros() {
 		return this.libros;
 	}
 
-	public void setLibros(Set libros) {
+	public void setLibros(Set<Libro> libros) {
 		this.libros = libros;
+	}
+
+	@Override
+	public String toString() {
+		return "Autor [idAutor=" + idAutor + ", nombre=" + nombre + ", apellidos=" + apellidos + "]";
 	}
 
 }

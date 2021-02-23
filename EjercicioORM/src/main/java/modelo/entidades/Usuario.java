@@ -2,7 +2,6 @@ package modelo.entidades;
 // default package
 // Generated 2 feb. 2021 13:38:13 by Hibernate Tools 5.2.12.Final
 
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,24 +11,30 @@ import java.util.Set;
  */
 public class Usuario implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer idUsuario;
 	private String nombre;
 	private String apellidos;
 	private Date fechaNacimiento;
-	private Set prestamos = new HashSet(0);
+	private String Dni;
+	private Set<Prestamo> prestamos = new HashSet<Prestamo>(0);
 	private Contactousuario contactousuario;
-
+	
 	public Usuario() {
+		
 	}
 
-	public Usuario(String nombre, String apellidos, Date fechaNacimiento) {
+	public Usuario(String nombre, String apellidos, Date fechaNacimiento, String Dni) {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.fechaNacimiento = fechaNacimiento;
+		this.Dni = Dni;
 	}
 
-	public Usuario(String nombre, String apellidos, Date fechaNacimiento, Set prestamos,
-			Contactousuario contactousuario) {
+	public Usuario(String nombre, String apellidos, Date fechaNacimiento, Set<Prestamo> prestamos, Contactousuario contactousuario) {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.fechaNacimiento = fechaNacimiento;
@@ -69,11 +74,19 @@ public class Usuario implements java.io.Serializable {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	public Set getPrestamos() {
+	public String getDni() {
+		return Dni;
+	}
+
+	public void setDni(String dni) {
+		Dni = dni;
+	}
+	
+	public Set<Prestamo> getPrestamos() {
 		return this.prestamos;
 	}
 
-	public void setPrestamos(Set prestamos) {
+	public void setPrestamos(Set<Prestamo> prestamos) {
 		this.prestamos = prestamos;
 	}
 
@@ -83,6 +96,13 @@ public class Usuario implements java.io.Serializable {
 
 	public void setContactousuario(Contactousuario contactousuario) {
 		this.contactousuario = contactousuario;
+	}
+
+	@Override
+	public String toString() {
+		return "Usuario [idUsuario=" + idUsuario + ", nombre=" + nombre + ", apellidos=" + apellidos
+				+ ", fechaNacimiento=" + fechaNacimiento + ", Dni=" + Dni + ", prestamos=" + prestamos
+				+ ", contactousuario=" + contactousuario + "]";
 	}
 
 }
