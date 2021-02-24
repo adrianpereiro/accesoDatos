@@ -78,7 +78,7 @@ public class Ejercicio {
 //		EjemplarDao eDao = new EjemplarDao();
 //
 //		Date datePrestamo = new java.sql.Date(2021, 1, 10);
-//		Prestamo p = new Prestamo(e, u, datePrestamo, current);
+//		Prestamo p = new Prestamo(e, u, datePrestamo, null);
 //		PrestamoDao pDao = new PrestamoDao();
 //
 //		uDao.insertar(u);
