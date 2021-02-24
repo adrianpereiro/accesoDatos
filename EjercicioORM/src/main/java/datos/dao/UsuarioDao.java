@@ -3,14 +3,13 @@ package datos.dao;
 import java.util.List;
 import java.util.Scanner;
 
-import javax.persistence.NoResultException;
-
 import org.hibernate.*;
 
 import datos.configuracion.Conexion;
 import modelo.entidades.Prestamo;
 import modelo.entidades.Usuario;
 
+@SuppressWarnings({ "deprecation" })
 public class UsuarioDao {
 	public void insertar(Usuario usuario) {
 		Transaction t = null;
@@ -68,6 +67,7 @@ public class UsuarioDao {
 		return usuario;
 	}
 
+	@SuppressWarnings({ "unchecked"})
 	public void buscarDNI() {
 		Usuario u = new Usuario();
 		try (Session sesion = Conexion.obtenerSesion()) {
@@ -86,6 +86,7 @@ public class UsuarioDao {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public void usuarios_con_prestamos() {
 		Usuario u = new Usuario();
 		try (Session sesion = Conexion.obtenerSesion()) {
@@ -100,6 +101,7 @@ public class UsuarioDao {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public void menoresEdad() {
 		try (Session sesion = Conexion.obtenerSesion()) {
 			Query<Usuario> q = sesion.createQuery("FROM Usuario WHERE current_date()-FechaNAcimiento>=18");

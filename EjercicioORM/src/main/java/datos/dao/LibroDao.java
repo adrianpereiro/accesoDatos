@@ -15,6 +15,7 @@ import modelo.entidades.Autor;
 import modelo.entidades.Libro;
 import modelo.entidades.Prestamo;
 
+@SuppressWarnings("deprecation")
 public class LibroDao {
 	public void insertar(Libro l) {
 		Transaction t = null;
@@ -72,7 +73,7 @@ public class LibroDao {
 		return l;
 	}
 
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings("unchecked")
 	public void librosPrestados() {
 		try (Session sesion = Conexion.obtenerSesion()) {
 			Scanner sc = new Scanner(System.in);
@@ -90,11 +91,9 @@ public class LibroDao {
 				fecha = aux;
 			}
 			
-			Query<Prestamo> q = sesion.createQuery("FROM Prestamo p WHERE p.fechaPrestamo between :fecha and :fecha2");
-			
+			Query<Prestamo> q = sesion.createQuery("FROM Prestamo p WHERE p.fechaPrestamo between :fecha and :fecha2");			
 			q.setDate("fecha", fecha);
 			q.setDate("fecha2", fecha2);
-
 			List<Prestamo> listaPrestamos = (List<Prestamo>) q.getResultList();
 
 			for (Prestamo p : listaPrestamos) {
@@ -107,7 +106,7 @@ public class LibroDao {
 		}
 	}
 	
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings({ "unchecked" })
 	public void autorLibro() {
 		try (Session sesion = Conexion.obtenerSesion()) {
 			Scanner sc = new Scanner(System.in);
@@ -116,7 +115,6 @@ public class LibroDao {
 			
 			Query<Autor> q = sesion.createQuery("FROM Autor WHERE nombre like :nombreAutor");
 			q.setParameter("nombreAutor", nombre);
-			
 			List<Autor> listaAutores = (List<Autor>) q.getResultList();
 			
 			for(Autor a : listaAutores) {
@@ -125,11 +123,13 @@ public class LibroDao {
 					System.out.println(l + "\n");
 				}
 			}
+			sc.close();
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}
 	}
 	
+	@SuppressWarnings({ "unchecked" })
 	public void precioLibro() {
 		try(Session sesion = Conexion.obtenerSesion()){
 			Query<Libro> q = sesion.createQuery("FROM Libro WHERE precio is null OR precio<20");
