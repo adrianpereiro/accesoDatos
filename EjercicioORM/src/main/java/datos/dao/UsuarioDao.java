@@ -88,13 +88,11 @@ public class UsuarioDao {
 
 	@SuppressWarnings("unchecked")
 	public void usuarios_con_prestamos() {
-		Usuario u = new Usuario();
 		try (Session sesion = Conexion.obtenerSesion()) {
 			Query<Prestamo> q = sesion.createQuery("FROM Prestamo WHERE idUsuario is not null");
 			List<Prestamo> listaPrestamos = (List<Prestamo>) q.getResultList();
 			for (Prestamo p : listaPrestamos) {
-				u = p.getUsuario();
-				System.out.println(u + "\n");
+				System.out.println(p.getUsuario() + "\n");
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();

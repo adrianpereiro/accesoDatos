@@ -141,25 +141,6 @@ public class LibroDao {
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	}	
 
 }
