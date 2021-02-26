@@ -102,7 +102,7 @@ public class UsuarioDao {
 	@SuppressWarnings("unchecked")
 	public void menoresEdad() {
 		try (Session sesion = Conexion.obtenerSesion()) {
-			Query<Usuario> q = sesion.createQuery("FROM Usuario WHERE current_date()-FechaNAcimiento>=18");
+			Query<Usuario> q = sesion.createQuery("FROM Usuario WHERE current_date()-FechaNAcimiento<18");
 			List<Usuario> listaUsuarios = (List<Usuario>) q.getResultList();
 			for (Usuario u : listaUsuarios) {
 				System.out.println(u + "\n");

@@ -84,14 +84,8 @@ public class LibroDao {
 			System.out.println("Fecha 2: \n");
 			String Sfecha2 = sc.nextLine();
 			Date fecha2 = sdf.parse(Sfecha2);
-
-			if (fecha.after(fecha2)) {
-				Date aux = fecha2;
-				fecha2 = fecha;
-				fecha = aux;
-			}
 			
-			Query<Prestamo> q = sesion.createQuery("FROM Prestamo p WHERE p.fechaPrestamo between :fecha and :fecha2");			
+			Query<Prestamo> q = sesion.createQuery("FROM Prestamo p WHERE p.fechaPrestamo between :fecha and :fecha2");
 			q.setDate("fecha", fecha);
 			q.setDate("fecha2", fecha2);
 			List<Prestamo> listaPrestamos = (List<Prestamo>) q.getResultList();
