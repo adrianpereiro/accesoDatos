@@ -104,7 +104,7 @@ public class Ejercicio {
 //		uDao.usuarios_con_prestamos();
 //
 //		Ejercicio 8.3
-//		uDao.menoresEdad();
+	uDao.menoresEdad();
 //
 //
 //
