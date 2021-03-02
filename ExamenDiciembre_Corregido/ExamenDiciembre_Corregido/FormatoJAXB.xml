@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listaEdificios>
+	<edificio>
+		<calle></calle>
+		<poblacion></poblacion>
+		<codigoPostal></codigoPostal>
+		<listaPisosEdificio>
+			<piso>
+				<numero_piso></numero_piso>
+				<puerta></puerta>
+				<metros></metros>
+			</piso>
+		</listaPisosEdificio>
+	</edificio>
+</listaEdificios>
+
+

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listado>
+	<edificio>
+		<id>1</id>
+		<calle>Las Conchiñas</calle>
+		<poblacion>A Coruña</poblacion>
+		<cp>15004</cp>
+		<pisos>
+			<piso>
+				<id>1</id>
+				<numero>27</numero>
+				<puerta>A</puerta>
+				<m2>152</m2>
+			</piso>
+			<piso>
+				<id>2</id>
+				<numero>27</numero>
+				<puerta>B</puerta>
+				<m2>70</m2>
+			</piso>
+			<piso>
+				<id>3</id>
+				<numero>27</numero>
+				<puerta>A</puerta>
+				<m2>80</m2>
+			</piso>
+		</pisos>
+	</edificio>
+<edificio>
+		<id>2</id>
+		<calle>Rubine</calle>
+		<poblacion>A Coruña</poblacion>
+		<cp>15003</cp>
+		<pisos>
+			<piso>
+				<id>4</id>
+				<numero>1</numero>
+				<puerta>M</puerta>
+				<m2>90</m2>
+			</piso>
+			<piso>
+				<id>5</id>
+				<numero>2</numero>
+				<puerta>C</puerta>
+				<m2>200</m2>
+			</piso>
+		</pisos>
+	</edificio>
+</listado>

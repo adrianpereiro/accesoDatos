@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<listaEdificios>
+    <edificio>
+        <calle>Barcelona</calle>
+        <poblacion>Coruña </poblacion>
+        <codigoPostal>15008</codigoPostal>
+        <listaPisosEdificio>
+            <piso>
+                <numero_piso>12</numero_piso>
+                <puerta>A</puerta>
+                <metros>2</metros>
+            </piso>
+            <piso>
+                <numero_piso>124</numero_piso>
+                <puerta>B</puerta>
+                <metros>2</metros>
+            </piso>
+            <piso>
+                <numero_piso>130</numero_piso>
+                <puerta>C</puerta>
+                <metros>2</metros>
+            </piso>
+        </listaPisosEdificio>
+    </edificio>
+    <edificio>
+        <calle>Pontevedra</calle>
+        <poblacion>Coruña </poblacion>
+        <codigoPostal>15003</codigoPostal>
+        <listaPisosEdificio/>
+    </edificio>
+</listaEdificios>
